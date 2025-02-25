@@ -1,9 +1,14 @@
 
 
 
+
 def escolher_cultura():
-    while True:
-        cultura = input("Digite a cultura que deseja trabalhar (soja/milho): ").lower()
-        if cultura in ["soja", "milho"]:
-            return cultura
-        print("Cultura inválida! Escolha entre soja e milho.")
+    culturas = []
+    while len(culturas) < 2:
+        cultura = input("Digite a cultura que deseja trabalhar (soja/milho ou qualquer outra): ").lower()
+        if cultura not in culturas:
+            culturas.append(cultura)
+        else:
+            print("Cultura já escolhida. Por favor, escolha uma cultura diferente.")
+    print(f"As culturas escolhidas foram: {culturas}")
+    return culturas
