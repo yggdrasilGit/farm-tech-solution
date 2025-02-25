@@ -19,7 +19,7 @@ projeto_escolha_cultura/
 ## Instalação
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/seu-usuario/projeto_escolha_cultura.git
+   git clone https://github.com/yggdrasilGit/farm-tech-solution
    ```
 2. Acesse o diretório do projeto:
    ```bash
@@ -51,5 +51,5 @@ Se desejar contribuir com melhorias para este projeto, siga os passos:
 3. Envie um pull request.
 
 ## Licença
-Este projeto está licenciado sob a [MIT License](LICENSE).
+Este projeto está licenciado sob a [](LICENSE).
 
