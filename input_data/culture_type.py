@@ -1,3 +1,5 @@
+# coding: utf-8
+
 def escolher_cultura():
     """
     Permite ao usuário selecionar duas culturas distintas para trabalhar.
