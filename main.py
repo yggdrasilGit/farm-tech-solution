@@ -1,4 +1,5 @@
-from input_data.culture_type import escolher_cultura
+# coding: utf-*
+from input_data.culture_type import SelecaoCultura
 
 def menu():
     """
@@ -10,7 +11,11 @@ def menu():
     Returns:
         None
     """
-    cultura = escolher_cultura()
+    # Cria uma instância de SelecaoCultura
+    selecao = SelecaoCultura()
+    
+    # Chama o método escolher_cultura da instância
+    selecao.escolher_cultura()
 
 if __name__ == "__main__":
     menu()
