@@ -1,4 +1,4 @@
-# coding: utf-*
+# coding: utf-8
 from input_data.culture_type import SelecaoCultura
 
 def menu():
