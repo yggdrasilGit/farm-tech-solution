@@ -1,19 +1,20 @@
-# coding: utf-8
+from calculation.area_calculator import AreaCalculator
 
-class CultureSeletion:
+class CultureSelection:
     """
-    Class to manage agricultural cultures.
+    Class to manage agricultural cultures and calculate planting areas.
 
     The user can:
     1️⃣ Choose two distinct cultures to work with.
     2️⃣ Register new available cultures.
     3️⃣ View all registered cultures.
+    4️⃣ Calculate the area for planting based on selected cultures.
     """
-
 
     def __init__(self):
         self.culturas_disponiveis = set()  # Culturas disponíveis para escolha
         self.culturas_escolhidas = set()   # Culturas escolhidas pelo usuário
+        self.area_calculator = AreaCalculator()  # Instancia a classe de cálculo de área
 
     def select_culture(self):
         """
@@ -29,7 +30,7 @@ class CultureSeletion:
         
         self.culturas_escolhidas.clear()  # Limpa seleções anteriores
         while len(self.culturas_escolhidas) < 2:
-            self.culturas_cadastradas()
+            self.registered_cultures()
             cultura = input("Digite a cultura que deseja trabalhar: ").strip().lower()
 
             if cultura not in self.culturas_disponiveis:
@@ -73,6 +74,7 @@ class CultureSeletion:
             print("1️⃣ Escolher culturas para trabalhar")
             print("2️⃣ Cadastrar novas culturas")
             print("3️⃣ Ver culturas cadastradas")
+            print("4️⃣ Calcular área de plantio")
             print("0️⃣ Sair")
 
             opcao = input("Escolha uma opção: ").strip()
@@ -83,12 +85,22 @@ class CultureSeletion:
                 self.register_culture()
             elif opcao == "3":
                 self.registered_cultures()
+            elif opcao == "4":
+                self.calculate_area_for_selected_cultures()
             elif opcao == "0":
                 print("👋 Saindo do programa. Até mais!")
                 break
             else:
                 print("❌ Opção inválida. Tente novamente.")
 
-# Exemplo de uso:
-# selecao = CultureSeletion
-# selecao.menu()
+    def calculate_area_for_selected_cultures(self):
+        """
+        Chama o cálculo de área separadamente para cada cultura escolhida.
+        """
+        if not self.culturas_escolhidas:
+            print("⚠️ Você precisa escolher as culturas primeiro.")
+            return
+        
+        for cultura in self.culturas_escolhidas:
+            print(f"\nCalculando área para a cultura: {cultura.capitalize()}")
+            self.area_calculator.calculate_area(cultura)  # Passa a cultura para o método de cálculo

@@ -1,17 +1,20 @@
 # farm-tech-solution
- First version project!
+First version project!
 
-# Projeto de Escolha de Culturas
+## Projeto de Escolha de Culturas
 
-## Descrição
-Este projeto tem como objetivo permitir ao usuário selecionar duas culturas distintas para trabalhar. A seleção é feita por meio da função `escolher_cultura()`, que impede a escolha de culturas repetidas.
+Este projeto tem como objetivo permitir ao usuário selecionar duas culturas distintas para trabalhar. A seleção é feita por meio da função `escolher_cultura()`, que impede a escolha de culturas repetidas. O usuário pode cadastrar novas culturas e visualizá-las antes de fazer a escolha.
 
 ## Estrutura do Projeto
 ```
 projeto_escolha_cultura/
+|
+|-- calculation/
+|
 │── input_data/
 │   ├── __init__.py
 │   ├── culture_type.py
+|   |-- enterprise_name.py
 │── main.py
 │── README.md
 ```
@@ -26,6 +29,25 @@ projeto_escolha_cultura/
    cd projeto_escolha_cultura
    ```
 
+3. Crie um ambiente virtual (recomendado):
+
+  Para Windows:
+```bash
+  python -m venv venv
+  venv\Scripts\activate
+```
+Para Linux/Mac:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+4. Instale dependências de projeto 
+```bash
+pip install -r requirements.txt
+```
+
+
 ## Como Usar
 1. Execute o script principal:
    ```bash
@@ -39,9 +61,16 @@ projeto_escolha_cultura/
 
 ## Exemplo de Uso
 ```bash
-Digite a cultura que deseja trabalhar (soja/milho ou qualquer outra): soja
-Digite a cultura que deseja trabalhar (soja/milho ou qualquer outra): milho
-As culturas escolhidas foram: ['soja', 'milho']
+🌿 🌱
+FARM TECH SOLUTION
+🌱 🌿
+
+📌 MENU PRINCIPAL
+1️⃣ Escolher culturas para trabalhar
+2️⃣ Cadastrar novas culturas
+3️⃣ Ver culturas cadastradas
+0️⃣ Sair
+
 ```
 
 ## Contribuição
