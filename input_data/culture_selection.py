@@ -1,16 +1,9 @@
 from calculation.area_calculator import AreaCalculator
-from calculation.insumo import Insumo  # Importando a classe Insumo
+from calculation.insumo import Insumo
 
 class CultureSelection:
     """
     Class to manage agricultural cultures and calculate planting areas.
-
-    The user can:
-    1️⃣ Choose two distinct cultures to work with.
-    2️⃣ Register new available cultures.
-    3️⃣ View all registered cultures.
-    4️⃣ Calculate the area for planting based on selected cultures.
-    5️⃣ Calculate the necessary inputs (seeds, fertilizer, defensive, etc.) based on the area.
     """
 
     def __init__(self):
@@ -21,10 +14,6 @@ class CultureSelection:
     def select_culture(self):
         """
         Allows the user to select two distinct cultures to work with.
-        The user can only choose cultures that are already registered.
-
-        Returns:
-            list: A list containing the two cultures selected by the user.
         """
         if not self.culturas_disponiveis:
             print("⚠️ Nenhuma cultura cadastrada. Cadastre primeiro antes de escolher.")

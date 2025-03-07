@@ -10,5 +10,5 @@ class EnterpriseName:
         """
         Returns the company name in a stylized format using pyfiglet.
         """
-        ascii_art = pyfiglet.figlet_format("FARM TECH SOLUTION ")
+        ascii_art = pyfiglet.figlet_format("FARM TECH SOLUTION")
         return "\n🌿 🌱\n" + ascii_art + "🌱 🌿\n"
