@@ -11,7 +11,8 @@ def menu():
     """
     # Displays the company name at the beginning of the menu
     company_name = EnterpriseName.display_company_name()
-    print(company_name)  # Here, we print the string returned by the function
+    print(company_name)  # Here, we print the string returned by the function5
+    
 
     # Creates an instance of SelecaoCultura
     selection = CultureSelection()

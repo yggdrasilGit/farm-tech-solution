@@ -1,4 +1,5 @@
 from calculation.area_calculator import AreaCalculator
+from calculation.insumo import Insumo  # Importando a classe Insumo
 
 class CultureSelection:
     """
@@ -9,6 +10,7 @@ class CultureSelection:
     2️⃣ Register new available cultures.
     3️⃣ View all registered cultures.
     4️⃣ Calculate the area for planting based on selected cultures.
+    5️⃣ Calculate the necessary inputs (seeds, fertilizer, defensive, etc.) based on the area.
     """
 
     def __init__(self):
@@ -75,6 +77,7 @@ class CultureSelection:
             print("2️⃣ Cadastrar novas culturas")
             print("3️⃣ Ver culturas cadastradas")
             print("4️⃣ Calcular área de plantio")
+            print("5️⃣ Calcular insumos necessários")
             print("0️⃣ Sair")
 
             opcao = input("Escolha uma opção: ").strip()
@@ -87,6 +90,8 @@ class CultureSelection:
                 self.registered_cultures()
             elif opcao == "4":
                 self.calculate_area_for_selected_cultures()
+            elif opcao == "5":
+                self.calculate_inputs_for_selected_cultures()
             elif opcao == "0":
                 print("👋 Saindo do programa. Até mais!")
                 break
@@ -104,3 +109,18 @@ class CultureSelection:
         for cultura in self.culturas_escolhidas:
             print(f"\nCalculando área para a cultura: {cultura.capitalize()}")
             self.area_calculator.calculate_area(cultura)  # Passa a cultura para o método de cálculo
+
+    def calculate_inputs_for_selected_cultures(self):
+        """
+        Calcula os insumos necessários para as culturas escolhidas.
+        """
+        if not self.culturas_escolhidas:
+            print("⚠️ Você precisa escolher as culturas primeiro.")
+            return
+        
+        for cultura in self.culturas_escolhidas:
+            print(f"\nCalculando insumos para a cultura: {cultura.capitalize()}")
+            insumo = Insumo(cultura)  # Cria uma instância de Insumo para a cultura
+            insumo.calcular_insumos()  # Calcula os insumos para a cultura
+            for insumo_info in insumo.obter_insumos():
+                print(insumo_info)  # Exibe os insumos calculados
