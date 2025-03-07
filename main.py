@@ -1,21 +1,25 @@
-# coding: utf-8
-from input_data.culture_type import SelecaoCultura
+from input_data.culture_type import CultureSeletion
+from input_data.enterprise_name import EnterpriseName
+
 
 def menu():
     """
-    Exibe o menu principal do programa e chama a função para escolher culturas.
-
-    A função `escolher_cultura()` permite ao usuário selecionar duas culturas
-    distintas para trabalhar e armazena a escolha.
-
+    Displays the main menu of the program and allows the user to choose actions.
+    
     Returns:
         None
     """
-    # Cria uma instância de SelecaoCultura
-    selecao = SelecaoCultura()
+    # Displays the company name at the beginning of the menu
+    company_name = EnterpriseName.display_company_name()
+    print(company_name)  # Here, we print the string returned by the function
+
+    # Creates an instance of SelecaoCultura
+    selection = CultureSeletion()
     
-    # Chama o método escolher_cultura da instância
-    selecao.escolher_cultura()
+    # Calls the menu method of the instance to display the interactive menu
+    selection.menu()
 
 if __name__ == "__main__":
+    # Calls the menu function
     menu()
+
