@@ -82,3 +82,29 @@ Se desejar contribuir com melhorias para este projeto, siga os passos:
 ## Licença
 Este projeto está licenciado sob a [](LICENSE).
 
+## Tipos de insumos 
+
+1️⃣ Sementes ou Mudas
+Sementes certificadas (ex: milho, feijão, soja)
+Mudas (ex: café, frutíferas, hortaliças)
+2️⃣ Fertilizantes e Corretivos de Solo
+Adubo orgânico (esterco, composto orgânico)
+Fertilizantes químicos (NPK 20-10-10, ureia, superfosfato)
+Calcário (para correção do pH do solo)
+Gesso agrícola (para corrigir alumínio tóxico no solo)
+3️⃣ Defensivos Agrícolas (Agrotóxicos ou Alternativos)
+Herbicidas (ex: glifosato para controle de ervas daninhas)
+Inseticidas (ex: cipermetrina para controle de pragas)
+Fungicidas (ex: mancozebe para prevenir doenças fúngicas)
+Biodefensivos (ex: extrato de nim, bacillus thuringiensis)
+4️⃣ Irrigação e Conservação da Umidade
+Sistema de irrigação (gotejamento, aspersão)
+Mulching (palha, plástico para retenção de umidade)
+5️⃣ Equipamentos e Ferramentas
+Enxada, foice, rastelo
+Pulverizador manual ou motorizado
+Trator e implementos (se for produção em larga escala)
+6️⃣ Mão de Obra e Serviços
+Contratação de trabalhadores rurais
+Análise de solo e assistência técnica
+
