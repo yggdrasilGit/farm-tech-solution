@@ -70,9 +70,3 @@ class AreaCalculator:
             print(f"\n✅ A área de plantio do {nome_forma.lower()} para a cultura {self.cultura} é: {area:.2f} {self.unidade}²")
         else:
             print("❌ Opção inválida. Tente novamente.")
-
-# Exemplo de uso:
-# cultura = input("Digite o nome da cultura: ")
-# calculadora = AreaCalculator(cultura)
-# calculadora.calcular_area()
-
