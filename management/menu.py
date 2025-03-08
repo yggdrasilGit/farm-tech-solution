@@ -1,6 +1,6 @@
 from management.culture_manager import CultureManager
 from calculation.area_calculator import AreaCalculator
-from calculation.insumo import Insumo
+from management.insum_manager import Insumo
 
 class Menu:
     """
@@ -37,23 +37,58 @@ class Menu:
             elif opcao == "6":
                 self.show_inputs()
             elif opcao == "0":
-                print("\ud83d\udc4b Saindo do programa. Até mais!")
+                print("👋 Saindo do programa. Até mais!")
                 break
             else:
                 print("❌ Opção inválida. Tente novamente.")
 
     def calculate_area(self):
-        """Calcula a área para cada cultura escolhida."""
+        """Calcula a área de plantio em hectares para cada cultura escolhida."""
         if not self.culture_manager.culturas_escolhidas:
             print("⚠️ Você precisa escolher as culturas primeiro.")
             return
 
-        unidade = input("Digite a unidade de medida para o plantio (ex: metros, centímetros): ").strip()
-
         for cultura in self.culture_manager.culturas_escolhidas:
             print(f"\nCalculando área para a cultura: {cultura.capitalize()}")
-            area_calculator = AreaCalculator(cultura, unidade)
-            area_calculator.calcular_area()
+
+            print("Escolha a forma da área de plantio:")
+            print("1️⃣ Quadrado")
+            print("2️⃣ Retângulo")
+            print("3️⃣ Círculo")
+            print("4️⃣ Triângulo")
+            print("5️⃣ Polígono Regular")
+            print("6️⃣ Trapézio")
+
+            opcao = input("Digite o número da opção: ").strip()
+
+            if opcao == "1":
+                lado = float(input("Digite o lado do quadrado (km): "))
+                area = AreaCalculator.calcular_quadrado(lado)
+            elif opcao == "2":
+                base = float(input("Digite a base do retângulo (km): "))
+                altura = float(input("Digite a altura do retângulo (km): "))
+                area = AreaCalculator.calcular_retangulo(base, altura)
+            elif opcao == "3":
+                raio = float(input("Digite o raio do círculo (km): "))
+                area = AreaCalculator.calcular_circulo(raio)
+            elif opcao == "4":
+                base = float(input("Digite a base do triângulo (km): "))
+                altura = float(input("Digite a altura do triângulo (km): "))
+                area = AreaCalculator.calcular_triangulo(base, altura)
+            elif opcao == "5":
+                n_lados = int(input("Digite o número de lados do polígono regular: "))
+                comprimento_lado = float(input("Digite o comprimento de cada lado (km): "))
+                area = AreaCalculator.calcular_poligono_regular(n_lados, comprimento_lado)
+            elif opcao == "6":
+                base1 = float(input("Digite a base maior do trapézio (km): "))
+                base2 = float(input("Digite a base menor do trapézio (km): "))
+                altura = float(input("Digite a altura do trapézio (km): "))
+                area = AreaCalculator.calcular_trapezio(base1, base2, altura)
+            else:
+                print("❌ Opção inválida. Tente novamente.")
+                return
+
+            print(f"🌱 A área de plantio para {cultura.capitalize()} é de {area:.2f} hectares.")
 
     def register_inputs(self):
         """Cadastra insumos para as culturas escolhidas."""
@@ -74,5 +109,5 @@ class Menu:
             return
 
         for cultura, insumo in self.insumos.items():
-            print(f"\nInsumos cadastrados para a cultura {cultura.capitalize()}:")
+            print(f"\n📋 Insumos cadastrados para a cultura {cultura.capitalize()}:")
             insumo.listar_insumos()

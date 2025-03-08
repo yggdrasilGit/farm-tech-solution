@@ -3,70 +3,46 @@ import math
 class AreaCalculator:
     """
     Classe para calcular áreas de plantio com diferentes formas geométricas.
+    Entrada: km
+    Saída: hectares (ha)
     """
-    def __init__(self, cultura):
-        self.cultura = cultura.capitalize()
-        self.unidade = input(f"Digite a unidade de medida para o plantio da cultura {self.cultura} (ex: metros, centímetros): ").strip()
     
-    def get_float_input(self, mensagem):
-        """ Obtém entrada numérica validada do usuário. """
-        while True:
-            try:
-                return float(input(mensagem))
-            except ValueError:
-                print("❌ Entrada inválida! Digite um número válido.")
+    @staticmethod
+    def calcular_quadrado(lado_km):
+        area_km2 = lado_km ** 2
+        return area_km2 * 100  # 1 km² = 100 ha
     
-    def calcular_quadrado(self):
-        lado = self.get_float_input("Digite o comprimento do lado do quadrado: ")
-        return lado ** 2
+    @staticmethod
+    def calcular_retangulo(base_km, altura_km):
+        area_km2 = base_km * altura_km
+        return area_km2 * 100  
     
-    def calcular_retangulo(self):
-        base = self.get_float_input("Digite a base do retângulo: ")
-        altura = self.get_float_input("Digite a altura do retângulo: ")
-        return base * altura
+    @staticmethod
+    def calcular_circulo(raio_km):
+        area_km2 = math.pi * (raio_km ** 2)
+        return area_km2 * 100  
     
-    def calcular_circulo(self):
-        raio = self.get_float_input("Digite o raio do círculo: ")
-        return math.pi * (raio ** 2)
+    @staticmethod
+    def calcular_triangulo(base_km, altura_km):
+        area_km2 = (base_km * altura_km) / 2
+        return area_km2 * 100  
     
-    def calcular_triangulo(self):
-        base = self.get_float_input("Digite a base do triângulo: ")
-        altura = self.get_float_input("Digite a altura do triângulo: ")
-        return (base * altura) / 2
+    @staticmethod
+    def calcular_poligono_regular(n_lados, comprimento_lado_km):
+        area_km2 = (n_lados * comprimento_lado_km ** 2) / (4 * math.tan(math.pi / n_lados))
+        return area_km2 * 100  
     
-    def calcular_poligono_regular(self):
-        n_lados = int(self.get_float_input("Digite o número de lados do polígono regular: "))
-        comprimento_lado = self.get_float_input("Digite o comprimento de cada lado do polígono: ")
-        return (n_lados * comprimento_lado ** 2) / (4 * math.tan(math.pi / n_lados))
+    @staticmethod
+    def calcular_trapezio(base1_km, base2_km, altura_km):
+        area_km2 = ((base1_km + base2_km) * altura_km) / 2
+        return area_km2 * 100  
     
-    def calcular_trapezio(self):
-        base1 = self.get_float_input("Digite o comprimento da primeira base do trapézio: ")
-        base2 = self.get_float_input("Digite o comprimento da segunda base do trapézio: ")
-        altura = self.get_float_input("Digite a altura do trapézio: ")
-        return ((base1 + base2) * altura) / 2
-    
-    def calcular_area(self):
-        """
-        Permite ao usuário calcular a área de plantio com base na forma escolhida.
-        """
-        opcoes = {
-            "1": ("Quadrado", self.calcular_quadrado),
-            "2": ("Retângulo", self.calcular_retangulo),
-            "3": ("Círculo", self.calcular_circulo),
-            "4": ("Triângulo", self.calcular_triangulo),
-            "5": ("Polígono Regular", self.calcular_poligono_regular),
-            "6": ("Trapézio", self.calcular_trapezio)
-        }
-        
-        print("\nEscolha o tipo de área de plantio para calcular:")
-        for key, (nome, _) in opcoes.items():
-            print(f"{key}️⃣ {nome}")
-        
-        escolha = input("Digite o número correspondente à forma: ").strip()
-        
-        if escolha in opcoes:
-            nome_forma, funcao_calculo = opcoes[escolha]
-            area = funcao_calculo()
-            print(f"\n✅ A área de plantio do {nome_forma.lower()} para a cultura {self.cultura} é: {area:.2f} {self.unidade}²")
-        else:
-            print("❌ Opção inválida. Tente novamente.")
+
+# Exemplo de uso:
+if __name__ == "__main__":
+    print("Área de um quadrado de 2 km de lado:", AreaCalculator.calcular_quadrado(2), "ha")
+    print("Área de um retângulo de 3 km x 4 km:", AreaCalculator.calcular_retangulo(3, 4), "ha")
+    print("Área de um círculo de 1 km de raio:", AreaCalculator.calcular_circulo(1), "ha")
+    print("Área de um triângulo de base 2 km e altura 3 km:", AreaCalculator.calcular_triangulo(2, 3), "ha")
+    print("Área de um pentágono regular de lado 1 km:", AreaCalculator.calcular_poligono_regular(5, 1), "ha")
+    print("Área de um trapézio com bases 2 km e 3 km, altura 4 km:", AreaCalculator.calcular_trapezio(2, 3, 4), "ha")
