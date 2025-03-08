@@ -6,15 +6,22 @@ First version project!
 Este projeto tem como objetivo permitir ao usuário selecionar duas culturas distintas para trabalhar. A seleção é feita por meio da função `escolher_cultura()`, que impede a escolha de culturas repetidas. O usuário pode cadastrar novas culturas e visualizá-las antes de fazer a escolha.
 
 ## Estrutura do Projeto
+
 ```
 projeto_escolha_cultura/
 |
 |-- calculation/
+|   |-- __init__.py
+|   |-- area_calculator.py
+|   |-- insume.py
 |
-│── input_data/
+│── manegement/
 │   ├── __init__.py
-│   ├── culture_type.py
+│   ├── culture_manager.py
+|   |-- insum_manager.py
 |   |-- enterprise_name.py
+|   |-- menu.py
+|
 │── main.py
 │── README.md
 ```
