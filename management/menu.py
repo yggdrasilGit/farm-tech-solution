@@ -1,5 +1,6 @@
 from management.culture_manager import CultureManager
-from calculation.area_calculator import AreaCalculator
+from management.enterprise_name import EnterpriseName
+#from calculation.area_calculator import AreaCalculator
 from calculation.insumo import Insumo
 
 class Menu:
@@ -8,11 +9,12 @@ class Menu:
     """
     def __init__(self):
         self.culture_manager = CultureManager()
-        self.area_calculator = AreaCalculator()
+     #   self.area_calculator = AreaCalculator()
 
     def display(self):
         """Exibe o menu principal e gerencia as opções do usuário."""
         while True:
+
             print("\n📌 MENU PRINCIPAL")
             print("1️⃣ Escolher culturas para trabalhar")
             print("2️⃣ Cadastrar novas culturas")
@@ -47,7 +49,7 @@ class Menu:
         
         for cultura in self.culture_manager.culturas_escolhidas:
             print(f"\nCalculando área para a cultura: {cultura.capitalize()}")
-            self.area_calculator.calculate_area(cultura)
+            self.area_calculator.calcular_area()
 
     def calculate_inputs(self):
         """Calcula os insumos necessários para as culturas escolhidas."""
@@ -58,6 +60,6 @@ class Menu:
         for cultura in self.culture_manager.culturas_escolhidas:
             print(f"\nCalculando insumos para a cultura: {cultura.capitalize()}")
             insumo = Insumo(cultura)
-            insumo.calcular_insumos()
+            insumo.calcular()
             for insumo_info in insumo.obter_insumos():
                 print(insumo_info)

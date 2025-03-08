@@ -72,7 +72,7 @@ class AreaCalculator:
             print("❌ Opção inválida. Tente novamente.")
 
 # Exemplo de uso:
-cultura = input("Digite o nome da cultura: ")
-calculadora = AreaCalculator(cultura)
-calculadora.calcular_area()
+# cultura = input("Digite o nome da cultura: ")
+# calculadora = AreaCalculator(cultura)
+# calculadora.calcular_area()
 
