@@ -1,10 +1,14 @@
-from area_calculator import AreaCalculator
+from calculation.area_calculator import AreaCalculator
+from management.insum_manager import Insumo
+from management.culture_manager import CultureManager
 
-class InsumoCalculator:
+class InsumoCalculator(CultureManager):
     """
     Classe para calcular a quantidade total de insumos necessária para o plantio,
     considerando a área calculada em hectares e valores médios de consumo por hectare.
     """
+    
+    
 
     # Base de dados fictícia de consumo médio por hectare para cada insumo
     consumo_medio_por_ha = {
@@ -19,7 +23,8 @@ class InsumoCalculator:
         """
         Inicializa o calculador de insumos com um dicionário de áreas por cultura.
         """
-        self.areas_por_cultura = {}
+        self.cultura = CultureManager()
+        self.insumo = Insumo()
 
     def adicionar_cultura(self, cultura, tipo_area, *params):
         """
