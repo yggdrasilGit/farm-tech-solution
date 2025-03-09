@@ -9,6 +9,7 @@ class Menu:
     def __init__(self):
         self.culture_manager = CultureManager()
         self.insumos = {}  # Dicionário para armazenar insumos cadastrados por cultura
+        self.areas_plantio = {}  # Dicionário para armazenar áreas por cultura
 
     def display(self):
         """Exibe o menu principal e gerencia as opções do usuário."""
@@ -20,6 +21,7 @@ class Menu:
             print("4️⃣ Calcular área de plantio")
             print("5️⃣ Cadastrar insumos para culturas")
             print("6️⃣ Ver insumos cadastrados")
+            print("7️⃣ Ver áreas de plantio cadastradas")
             print("0️⃣ Sair")
 
             opcao = input("Escolha uma opção: ").strip()
@@ -36,6 +38,8 @@ class Menu:
                 self.register_inputs()
             elif opcao == "6":
                 self.show_inputs()
+            elif opcao == "7":
+                self.show_areas()
             elif opcao == "0":
                 print("👋 Saindo do programa. Até mais!")
                 break
@@ -61,6 +65,7 @@ class Menu:
 
             opcao = input("Digite o número da opção: ").strip()
 
+            area = 0
             if opcao == "1":
                 lado = float(input("Digite o lado do quadrado (km): "))
                 area = AreaCalculator.calcular_quadrado(lado)
@@ -86,8 +91,10 @@ class Menu:
                 area = AreaCalculator.calcular_trapezio(base1, base2, altura)
             else:
                 print("❌ Opção inválida. Tente novamente.")
-                return
+                continue  # Volta para o início do loop
 
+            # Salvando a área calculada no dicionário
+            self.areas_plantio[cultura] = area
             print(f"🌱 A área de plantio para {cultura.capitalize()} é de {area:.2f} hectares.")
 
     def register_inputs(self):
@@ -110,4 +117,15 @@ class Menu:
 
         for cultura, insumo in self.insumos.items():
             print(f"\n📋 Insumos cadastrados para a cultura {cultura.capitalize()}:")
-            insumo.listar_insumos()
+            insumo = Insumo()
+            print(insumo.exibir_insumos())
+    
+    def show_areas(self):
+        """Exibe as áreas de plantio calculadas para cada cultura."""
+        if not self.areas_plantio:
+            print("⚠️ Nenhuma área de plantio foi cadastrada ainda.")
+            return
+
+        print("\n📏 Áreas de plantio cadastradas:")
+        for cultura, area in self.areas_plantio.items():
+            print(f"🌱 Cultura: {cultura.capitalize()} - Área: {area:.2f} hectares")
