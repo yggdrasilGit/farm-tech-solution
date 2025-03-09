@@ -1,6 +1,7 @@
 from management.culture_manager import CultureManager
 from calculation.area_calculator import AreaCalculator
 from management.insum_manager import Insumo
+from calculation.insum_calculator import InsumoCalculator
 
 class Menu:
     """
@@ -10,6 +11,7 @@ class Menu:
         self.culture_manager = CultureManager()
         self.insumo = Insumo()
         self.insumos = {}  # Dicionário para armazenar insumos cadastrados por cultura
+        self.insumo_calculator = InsumoCalculator()
 
     def display(self):
         """Exibe o menu principal e gerencia as opções do usuário."""
@@ -21,6 +23,7 @@ class Menu:
             print("4️⃣ Calcular área de plantio")
             print("5️⃣ Cadastrar insumos para culturas")
             print("6️⃣ Ver insumos cadastrados")
+            print("7️⃣ Calcular insumo")
             print("0️⃣ Sair")
 
             opcao = input("Escolha uma opção: ").strip()
@@ -37,6 +40,8 @@ class Menu:
                 self.register_inputs()
             elif opcao == "6":
                 self.show_inputs()
+            elif opcao == "7":
+                self.calculo_insumo()
             elif opcao == "0":
                 print("👋 Saindo do programa. Até mais!")
                 break
@@ -108,7 +113,11 @@ class Menu:
             print("⚠️ Nenhum insumo foi cadastrado ainda.")
             return
 
-        for cultura, insumo in self.insumos.items():
+        for cultura, self.insumo in self.insumos.items():
             print(f"\n📋 Insumos cadastrados para a cultura {cultura.capitalize()}:")
             print(f"\n Os insumos são {self.insumo.obter_insumos()}")
+    
+    def calculo_insumo(self):
+        if not self.culture_manager.culturas_escolhidas and not self.insumo.insumos:
+            print("⚠️ Nenhum insumo foi cadastrado ainda.")
             

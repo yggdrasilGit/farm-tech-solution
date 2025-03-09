@@ -13,9 +13,8 @@ class Insumo:
             nome_insumo = input("Digite o nome do insumo (ou 'sair' para finalizar): ").strip()
             if nome_insumo.lower() == 'sair':
                 break
-            quantidade = input(f"Digite a quantidade necessária de {nome_insumo}: ").strip()
             unidade = input(f"Digite a unidade de medida para {nome_insumo} (ex: kg, litros): ").strip()
-            self.insumos.append({"nome": nome_insumo, "quantidade": quantidade, "unidade": unidade})
+            self.insumos.append({"nome": nome_insumo, "unidade": unidade})
             print(f"✅ Insumo '{nome_insumo}' cadastrado com sucesso!")
     
     def obter_insumos(self):
