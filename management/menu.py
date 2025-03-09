@@ -8,6 +8,7 @@ class Menu:
     """
     def __init__(self):
         self.culture_manager = CultureManager()
+        self.insumo = Insumo()
         self.insumos = {}  # Dicionário para armazenar insumos cadastrados por cultura
 
     def display(self):
@@ -98,9 +99,8 @@ class Menu:
 
         for cultura in self.culture_manager.culturas_escolhidas:
             print(f"\nCadastrando insumos para a cultura: {cultura.capitalize()}")
-            insumo = Insumo(cultura)
-            insumo.cadastrar_insumos()
-            self.insumos[cultura] = insumo  # Armazena o objeto Insumo por cultura
+            self.insumo.cadastrar_insumos()
+            self.insumos[cultura] = self.insumo  # Armazena o objeto Insumo por cultura
 
     def show_inputs(self):
         """Exibe os insumos cadastrados para cada cultura."""
@@ -110,4 +110,5 @@ class Menu:
 
         for cultura, insumo in self.insumos.items():
             print(f"\n📋 Insumos cadastrados para a cultura {cultura.capitalize()}:")
-            insumo.listar_insumos()
+            print(f"\n Os insumos são {self.insumo.obter_insumos()}")
+            

@@ -1,10 +1,12 @@
 from area_calculator import AreaCalculator
+from management.insum_manager import Insumo
 
-class InsumoCalculator:
+class InsumoCalculator(Insumo):
     """
     Classe para calcular a quantidade total de insumos necessária para o plantio,
     considerando a área calculada em hectares e valores médios de consumo por hectare.
     """
+    
 
     # Base de dados fictícia de consumo médio por hectare para cada insumo
     consumo_medio_por_ha = {

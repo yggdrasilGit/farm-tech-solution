@@ -2,7 +2,7 @@ class Insumo:
     """
     Classe para gerenciar os insumos necessários para o plantio de uma cultura.
     """
-    def __init__(self, cultura):
+    def __init__(self, cultura = ""):
         self.cultura = cultura.capitalize()
         self.insumos = []  # Lista de insumos cadastrados para a cultura
     
