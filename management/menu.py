@@ -10,7 +10,6 @@ class Menu:
     def __init__(self):
         self.culture_manager = CultureManager()
         self.insumos = {}  # Dicionário para armazenar insumos cadastrados por cultura
-        self.areas_plantio = {}  # Dicionário para armazenar áreas por cultura
         self.insumo = Insumo() # instancia insumo para cadastrar 
         self.display_menu = DisplayMenu()
 
@@ -35,19 +34,9 @@ class Menu:
             print("⚠️ Nenhum insumo foi cadastrado ainda.")
             return
 
-        for cultura, insumo in self.insumos.items():
+        for cultura in self.insumos.items():
             print(f"\n📋 Insumos cadastrados para a cultura {cultura.capitalize()}:")
             print(self.insumo.exibir_insumos())
-    
-    def show_areas(self):
-        """Exibe as áreas de plantio calculadas para cada cultura."""
-        if not self.areas_plantio:
-            print("⚠️ Nenhuma área de plantio foi cadastrada ainda.")
-            return
-
-        print("\n📏 Áreas de plantio cadastradas:")
-        for cultura, area in self.areas_plantio.items():
-            print(f"🌱 Cultura: {cultura.capitalize()} - Área: {area:.2f} hectares")
     
     def calcular_insumo(self):
         """Calcula a quantidade necessária de insumos para cada cultura cadastrada."""
