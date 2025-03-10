@@ -1,62 +1,15 @@
-from area_calculator import AreaCalculator
-
 class InsumoCalculator:
     """
-    Classe para calcular a quantidade total de insumos necessária para o plantio,
-    considerando a área calculada em hectares e valores médios de consumo por hectare.
+    Classe para calcular a quantidade necessária de insumos para uma área de plantio.
     """
 
-    # Base de dados fictícia de consumo médio por hectare para cada insumo
-    consumo_medio_por_ha = {
-        "adubo": 200,  # kg/ha
-        "sementes": 50,  # kg/ha
-        "herbicida": 2,  # litros/ha
-        "inseticida": 1.5,  # litros/ha
-        "calcário": 500  # kg/ha
-    }
-
-    def __init__(self):
+    @staticmethod
+    def calcular_insumo(quantidade_por_hectare, area):
         """
-        Inicializa o calculador de insumos com um dicionário de áreas por cultura.
+        Calcula a quantidade total de insumo necessária para uma determinada área de plantio.
+        
+        :param quantidade_por_hectare: Quantidade de insumo necessária por hectare (em unidades).
+        :param area: Área de plantio (em hectares).
+        :return: Quantidade total de insumo necessária.
         """
-        self.areas_por_cultura = {}
-
-    def adicionar_cultura(self, cultura, tipo_area, *params):
-        """
-        Adiciona uma cultura e calcula sua área correspondente.
-
-        :param cultura: Nome da cultura (ex: soja, milho)
-        :param tipo_area: Tipo de cálculo de área (ex: quadrado, retângulo)
-        :param params: Parâmetros necessários para o cálculo da área
-        """
-        metodos_calculo = {
-            "quadrado": AreaCalculator.calcular_quadrado,
-            "retangulo": AreaCalculator.calcular_retangulo,
-            "circulo": AreaCalculator.calcular_circulo,
-            "triangulo": AreaCalculator.calcular_triangulo,
-            "poligono": AreaCalculator.calcular_poligono_regular,
-            "trapezio": AreaCalculator.calcular_trapezio
-        }
-
-        if tipo_area in metodos_calculo:
-            self.areas_por_cultura[cultura] = metodos_calculo[tipo_area](*params)
-        else:
-            print(f"⚠️ Tipo de área '{tipo_area}' não reconhecido.")
-
-    def calcular_consumo_total(self, tipo_insumo):
-        """
-        Calcula a quantidade total necessária de um insumo para todas as culturas escolhidas.
-
-        :param tipo_insumo: Nome do insumo a ser calculado.
-        :return: Quantidade total necessária do insumo para todas as culturas.
-        """
-        if tipo_insumo not in self.consumo_medio_por_ha:
-            print(f"⚠️ Insumo '{tipo_insumo}' não encontrado na base de dados.")
-            return None
-
-        consumo_total = sum(
-            area * self.consumo_medio_por_ha[tipo_insumo]
-            for area in self.areas_por_cultura.values()
-        )
-
-        return consumo_total
+        return quantidade_por_hectare * area
