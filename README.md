@@ -13,7 +13,7 @@ projeto_escolha_cultura/
 |-- calculation/
 |   |-- __init__.py
 |   |-- area_calculator.py
-|   |-- insume.py
+|   |-- insume_calculator.py
 |
 │── manegement/
 │   ├── __init__.py

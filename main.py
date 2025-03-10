@@ -6,7 +6,7 @@ def main():
     enterprice = EnterpriseName()
     print(enterprice.display_company_name())
     menu = Menu()
-    menu.display()
+    menu.menu_display()
 
 if __name__ == "__main__":
     main()
