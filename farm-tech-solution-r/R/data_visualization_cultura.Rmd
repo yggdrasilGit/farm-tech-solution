@@ -4,26 +4,79 @@ output: html_document
 date: "2025-03-11"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+## Visualizacao de dados.
+
+Tem por obijetivo visualizar os dados, de plantio de culturas como soja, milho, batata,... inivialmente iremos instalar o pacote necessario.
+
+```{r}
+install.packages("jsonlite")
+```
+## Carregar pacotes
+
+```{r jsonlite}
+library(jsonlite)
+library(dplyr)
 ```
 
-## R Markdown
+## Carregar o arquivo.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+```{r arquivo_json}
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+library(jsonlite)
+library(dplyr)
 
-```{r cars}
-summary(cars)
+# Caminho para o arquivo JSON
+arquivo_json <- "/Users/francismaralvesmartinsjunior/Documents/GitHub/farm-tech-solution/farm-tech-solution-r/data/test.json"
+
+# Lendo o arquivo JSON
+dados <- fromJSON(arquivo_json)
+
+# Exibindo a estrutura dos dados para entender melhor
+str(dados)
 ```
 
-## Including Plots
+```{r json-dataframe}
+library(jsonlite)
+library(dplyr)
 
-You can also embed plots, for example:
+# Caminho para o arquivo JSON
+arquivo_json <- "/Users/francismaralvesmartinsjunior/Documents/GitHub/farm-tech-solution/farm-tech-solution-r/data/test.json"
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+# Lendo o arquivo JSON
+dados <- fromJSON(arquivo_json)
+
+# Função para processar os dados e extrair as informações de cada insumo
+dados_agrupados <- lapply(dados, function(cultura) {
+  # Inicializa uma lista para armazenar as informações
+  cultura_info <- list(
+    tipo_cultura = cultura$tipo,
+    area_plantio = cultura$area_plantio
+  )
+  
+  # Para cada tipo de insumo, extraímos as informações de quantidade e variedade
+  for (insumo in cultura$insumos) {
+    tipo_insumo <- insumo$tipo
+    cultura_info[[paste0(tipo_insumo, "_quantidade")]] <- insumo$quantidade
+    if ("variedade" %in% names(insumo)) {
+      cultura_info[[paste0(tipo_insumo, "_variedade")]] <- insumo$variedade
+    } else {
+      cultura_info[[paste0(tipo_insumo, "_variedade")]] <- NA
+    }
+  }
+  
+  # Convertendo a lista para um data.frame
+  return(as.data.frame(cultura_info, stringsAsFactors = FALSE))
+})
+
+# Unindo todas as culturas em um único data.frame
+df_final <- do.call(rbind, dados_agrupados)
+
+# Exibindo o data.frame final
+print(df_final)
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
