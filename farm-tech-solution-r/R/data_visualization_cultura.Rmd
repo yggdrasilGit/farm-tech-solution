@@ -10,71 +10,86 @@ Tem por obijetivo visualizar os dados, de plantio de culturas como soja, milho, 
 
 ```{r}
 install.packages("jsonlite")
+install.packages("dplyr")
+install.packages("tidyr")
 ```
 ## Carregar pacotes
 
 ```{r jsonlite}
-library(jsonlite)
-library(dplyr)
+library('jsonlite')
+library('dplyr')
+library('tidyr')
 ```
 
 ## Carregar o arquivo.
 
 ```{r arquivo_json}
-
-library(jsonlite)
-library(dplyr)
-
 # Caminho para o arquivo JSON
 arquivo_json <- "/Users/francismaralvesmartinsjunior/Documents/GitHub/farm-tech-solution/farm-tech-solution-r/data/test.json"
 
 # Lendo o arquivo JSON
 dados <- fromJSON(arquivo_json)
-
-# Exibindo a estrutura dos dados para entender melhor
-str(dados)
 ```
 
 ```{r json-dataframe}
-library(jsonlite)
-library(dplyr)
+# Converter diretamente para data.frame
+df <- as.data.frame(dados)
 
-# Caminho para o arquivo JSON
-arquivo_json <- "/Users/francismaralvesmartinsjunior/Documents/GitHub/farm-tech-solution/farm-tech-solution-r/data/test.json"
+# Exibir o resultado
+print(df)
 
-# Lendo o arquivo JSON
-dados <- fromJSON(arquivo_json)
-
-# Função para processar os dados e extrair as informações de cada insumo
-dados_agrupados <- lapply(dados, function(cultura) {
-  # Inicializa uma lista para armazenar as informações
-  cultura_info <- list(
-    tipo_cultura = cultura$tipo,
-    area_plantio = cultura$area_plantio
-  )
-  
-  # Para cada tipo de insumo, extraímos as informações de quantidade e variedade
-  for (insumo in cultura$insumos) {
-    tipo_insumo <- insumo$tipo
-    cultura_info[[paste0(tipo_insumo, "_quantidade")]] <- insumo$quantidade
-    if ("variedade" %in% names(insumo)) {
-      cultura_info[[paste0(tipo_insumo, "_variedade")]] <- insumo$variedade
-    } else {
-      cultura_info[[paste0(tipo_insumo, "_variedade")]] <- NA
-    }
-  }
-  
-  # Convertendo a lista para um data.frame
-  return(as.data.frame(cultura_info, stringsAsFactors = FALSE))
-})
-
-# Unindo todas as culturas em um único data.frame
-df_final <- do.call(rbind, dados_agrupados)
-
-# Exibindo o data.frame final
-print(df_final)
 
 ```
+
+
+## Laço para acessar a matriz ou data frame que esta em rocas.insumo e tranformalos em uma coluna para cada valor 
+```{r}
+
+for (i in 1:nrow(df)) {
+  df$semente_quantidade_kg[i] <- df$rocas.insumos[[i]][1, 'quantidade']
+  df$fertilizante_quantidade_kg[i] <- df$rocas.insumos[[i]][2, 'quantidade']
+  df$fertilizante_variedade[i] <- df$rocas.insumos[[i]][2, 'variedade']
+  df$veneno_quantidade_litros[i] <- df$rocas.insumos[[i]][3, 'quantidade']
+  df$veneno_variedade[i] <- df$rocas.insumos[[i]][3, 'variedade']
+  df$adubo_quantidade_kg[i] <- df$rocas.insumos[[i]][4, 'quantidade']
+  df$adubo_variedade[i] <- df$rocas.insumos[[i]][4, 'variedade']
+}
+
+
+# Excluindo a coluna 'rocas.insumo
+df <- subset(df, select = -rocas.insumos)
+
+# converter o dado em dados numéricos e retirando a unidade de medida da tabela
+# (rocas.area_plantio (un hectare), semente_quantidade (un kg), fertilizante_quantidade (un kg))
+# (veneno_fertilizante (un litros), abudo_quantidade (un kg))
+df$semente_quantidade_kg <- as.numeric(gsub(" kg", "", df$semente_quantidade_kg))
+df$fertilizante_quantidade_kg <- as.numeric(gsub(" kg", "", df$fertilizante_quantidade_kg))
+df$veneno_quantidade_litros <- as.numeric(gsub(" litros", "", df$veneno_quantidade_litros))
+df$adubo_quantidade_kg <- as.numeric(gsub(" kg", "", df$adubo_quantidade_kg))
+df$rocas.area_plantio <- as.numeric(gsub(" hectares", "", df$rocas.area_plantio))
+
+# Exibindo o dataframe após a exclusão
+print(df)
+
+```
+
+
+## Analise estatistica do data frame
+
+```{r}
+
+media <- mean(df$rocas.area_plantio)
+
+# Calculando o desvio padrão
+desvio_padrao <- sd(df$rocas.area_plantio)
+
+# Exibindo os resultados
+print(paste("Média:", media))
+print(paste("Desvio Padrão:", desvio_padrao))
+
+
+```
+
 
 
 
