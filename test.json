@@ -1,0 +1,285 @@
+{
+    "rocas": [
+      {
+        "tipo": "Milho",
+        "area_plantio": "10 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "200 kg"},
+          {"tipo": "Fertilizante", "quantidade": "500 kg", "variedade": "NPK 10-10-10"},
+          {"tipo": "Veneno", "quantidade": "50 litros", "variedade": "Glifosato"},
+          {"tipo": "Adubo", "quantidade": "600 kg", "variedade": "Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Soja",
+        "area_plantio": "15 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "300 kg"},
+          {"tipo": "Fertilizante", "quantidade": "700 kg", "variedade": "Superfosfato Simples"},
+          {"tipo": "Veneno", "quantidade": "70 litros", "variedade": "Paraquat"},
+          {"tipo": "Adubo", "quantidade": "800 kg", "variedade": "Composto Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Feijão",
+        "area_plantio": "8 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "150 kg"},
+          {"tipo": "Fertilizante", "quantidade": "400 kg", "variedade": "Ureia"},
+          {"tipo": "Veneno", "quantidade": "40 litros", "variedade": "Fungicida"},
+          {"tipo": "Adubo", "quantidade": "500 kg", "variedade": "Humus de Minhoca"}
+        ]
+      },
+      {
+        "tipo": "Trigo",
+        "area_plantio": "12 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "250 kg"},
+          {"tipo": "Fertilizante", "quantidade": "600 kg", "variedade": "NPK 20-10-10"},
+          {"tipo": "Veneno", "quantidade": "60 litros", "variedade": "Inseticida"},
+          {"tipo": "Adubo", "quantidade": "700 kg", "variedade": "Esterco Bovino"}
+        ]
+      },
+      {
+        "tipo": "Arroz",
+        "area_plantio": "20 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "400 kg"},
+          {"tipo": "Fertilizante", "quantidade": "900 kg", "variedade": "NPK 15-15-15"},
+          {"tipo": "Veneno", "quantidade": "80 litros", "variedade": "Herbicida"},
+          {"tipo": "Adubo", "quantidade": "1000 kg", "variedade": "Composto Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Cana-de-açúcar",
+        "area_plantio": "25 hectares",
+        "insumos": [
+          {"tipo": "Muda", "quantidade": "500 kg"},
+          {"tipo": "Fertilizante", "quantidade": "1200 kg", "variedade": "Cloreto de Potássio"},
+          {"tipo": "Veneno", "quantidade": "100 litros", "variedade": "Defensivo Agrícola"},
+          {"tipo": "Adubo", "quantidade": "1300 kg", "variedade": "Fertilizante Natural"}
+        ]
+      },
+      {
+        "tipo": "Batata",
+        "area_plantio": "5 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "100 kg"},
+          {"tipo": "Fertilizante", "quantidade": "300 kg", "variedade": "Superfosfato Triplo"},
+          {"tipo": "Veneno", "quantidade": "30 litros", "variedade": "Piretróide"},
+          {"tipo": "Adubo", "quantidade": "400 kg", "variedade": "Esterco de Galinha"}
+        ]
+      },
+      {
+        "tipo": "Café",
+        "area_plantio": "18 hectares",
+        "insumos": [
+          {"tipo": "Muda", "quantidade": "350 kg"},
+          {"tipo": "Fertilizante", "quantidade": "800 kg", "variedade": "NPK 18-8-24"},
+          {"tipo": "Veneno", "quantidade": "90 litros", "variedade": "Fungicida Sistêmico"},
+          {"tipo": "Adubo", "quantidade": "900 kg", "variedade": "Composto Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Algodão",
+        "area_plantio": "22 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "450 kg"},
+          {"tipo": "Fertilizante", "quantidade": "1000 kg", "variedade": "NPK 20-10-10"},
+          {"tipo": "Veneno", "quantidade": "110 litros", "variedade": "Defensivo Agrícola"},
+          {"tipo": "Adubo", "quantidade": "1200 kg", "variedade": "Adubo Verde"}
+        ]
+      },
+      {
+        "tipo": "Tomate",
+        "area_plantio": "6 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "120 kg"},
+          {"tipo": "Fertilizante", "quantidade": "350 kg", "variedade": "NPK 14-14-14"},
+          {"tipo": "Veneno", "quantidade": "35 litros", "variedade": "Fungicida"},
+          {"tipo": "Adubo", "quantidade": "450 kg", "variedade": "Humus de Minhoca"}
+        ]
+      },
+      {
+        "tipo": "Milho",
+        "area_plantio": "12 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "270 kg"},
+          {"tipo": "Fertilizante", "quantidade": "580 kg", "variedade": "NPK 10-10-10"},
+          {"tipo": "Veneno", "quantidade": "65 litros", "variedade": "Glifosato"},
+          {"tipo": "Adubo", "quantidade": "680 kg", "variedade": "Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Soja",
+        "area_plantio": "18 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "340 kg"},
+          {"tipo": "Fertilizante", "quantidade": "780 kg", "variedade": "Superfosfato Simples"},
+          {"tipo": "Veneno", "quantidade": "90 litros", "variedade": "Paraquat"},
+          {"tipo": "Adubo", "quantidade": "940 kg", "variedade": "Composto Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Feijão",
+        "area_plantio": "9 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "190 kg"},
+          {"tipo": "Fertilizante", "quantidade": "440 kg", "variedade": "Ureia"},
+          {"tipo": "Veneno", "quantidade": "50 litros", "variedade": "Fungicida"},
+          {"tipo": "Adubo", "quantidade": "580 kg", "variedade": "Humus de Minhoca"}
+        ]
+      },
+      {
+        "tipo": "Trigo",
+        "area_plantio": "14 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "290 kg"},
+          {"tipo": "Fertilizante", "quantidade": "640 kg", "variedade": "NPK 20-10-10"},
+          {"tipo": "Veneno", "quantidade": "75 litros", "variedade": "Inseticida"},
+          {"tipo": "Adubo", "quantidade": "780 kg", "variedade": "Esterco Bovino"}
+        ]
+      },
+      {
+        "tipo": "Arroz",
+        "area_plantio": "22 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "440 kg"},
+          {"tipo": "Fertilizante", "quantidade": "980 kg", "variedade": "NPK 15-15-15"},
+          {"tipo": "Veneno", "quantidade": "95 litros", "variedade": "Herbicida"},
+          {"tipo": "Adubo", "quantidade": "1150 kg", "variedade": "Composto Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Batata",
+        "area_plantio": "15 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "350 kg"},
+          {"tipo": "Fertilizante", "quantidade": "800 kg", "variedade": "NPK 12-12-17"},
+          {"tipo": "Veneno", "quantidade": "65 litros", "variedade": "Inseticida"},
+          {"tipo": "Adubo", "quantidade": "900 kg", "variedade": "Composto Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Milho",
+        "area_plantio": "12 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "300 kg"},
+          {"tipo": "Fertilizante", "quantidade": "600 kg", "variedade": "NPK 10-10-10"},
+          {"tipo": "Veneno", "quantidade": "70 litros", "variedade": "Glifosato"},
+          {"tipo": "Adubo", "quantidade": "700 kg", "variedade": "Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Soja",
+        "area_plantio": "18 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "360 kg"},
+          {"tipo": "Fertilizante", "quantidade": "800 kg", "variedade": "Superfosfato Simples"},
+          {"tipo": "Veneno", "quantidade": "95 litros", "variedade": "Paraquat"},
+          {"tipo": "Adubo", "quantidade": "960 kg", "variedade": "Composto Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Feijão",
+        "area_plantio": "9 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "200 kg"},
+          {"tipo": "Fertilizante", "quantidade": "460 kg", "variedade": "Ureia"},
+          {"tipo": "Veneno", "quantidade": "55 litros", "variedade": "Fungicida"},
+          {"tipo": "Adubo", "quantidade": "600 kg", "variedade": "Humus de Minhoca"}
+        ]
+      },
+      {
+        "tipo": "Trigo",
+        "area_plantio": "14 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "310 kg"},
+          {"tipo": "Fertilizante", "quantidade": "660 kg", "variedade": "NPK 20-10-10"},
+          {"tipo": "Veneno", "quantidade": "80 litros", "variedade": "Inseticida"},
+          {"tipo": "Adubo", "quantidade": "800 kg", "variedade": "Esterco Bovino"}
+        ]
+      },
+      {
+        "tipo": "Arroz",
+        "area_plantio": "22 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "460 kg"},
+          {"tipo": "Fertilizante", "quantidade": "1000 kg", "variedade": "NPK 15-15-15"},
+          {"tipo": "Veneno", "quantidade": "100 litros", "variedade": "Herbicida"},
+          {"tipo": "Adubo", "quantidade": "1180 kg", "variedade": "Composto Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Batata",
+        "area_plantio": "15 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "370 kg"},
+          {"tipo": "Fertilizante", "quantidade": "820 kg", "variedade": "NPK 12-12-17"},
+          {"tipo": "Veneno", "quantidade": "70 litros", "variedade": "Inseticida"},
+          {"tipo": "Adubo", "quantidade": "920 kg", "variedade": "Composto Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Alface",
+        "area_plantio": "10 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "5 kg"},
+          {"tipo": "Fertilizante", "quantidade": "150 kg", "variedade": "NPK 10-10-10"},
+          {"tipo": "Veneno", "quantidade": "20 litros", "variedade": "Inseticida"},
+          {"tipo": "Adubo", "quantidade": "200 kg", "variedade": "Composto Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Couve",
+        "area_plantio": "8 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "3 kg"},
+          {"tipo": "Fertilizante", "quantidade": "120 kg", "variedade": "NPK 15-15-15"},
+          {"tipo": "Veneno", "quantidade": "15 litros", "variedade": "Fungicida"},
+          {"tipo": "Adubo", "quantidade": "180 kg", "variedade": "Composto Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Tomate",
+        "area_plantio": "6 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "10 kg"},
+          {"tipo": "Fertilizante", "quantidade": "200 kg", "variedade": "NPK 20-10-10"},
+          {"tipo": "Veneno", "quantidade": "30 litros", "variedade": "Inseticida"},
+          {"tipo": "Adubo", "quantidade": "250 kg", "variedade": "Composto Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Espinafre",
+        "area_plantio": "4 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "2 kg"},
+          {"tipo": "Fertilizante", "quantidade": "100 kg", "variedade": "NPK 10-10-10"},
+          {"tipo": "Veneno", "quantidade": "10 litros", "variedade": "Herbicida"},
+          {"tipo": "Adubo", "quantidade": "150 kg", "variedade": "Composto Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Cenoura",
+        "area_plantio": "5 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "6 kg"},
+          {"tipo": "Fertilizante", "quantidade": "130 kg", "variedade": "NPK 12-24-12"},
+          {"tipo": "Veneno", "quantidade": "15 litros", "variedade": "Inseticida"},
+          {"tipo": "Adubo", "quantidade": "180 kg", "variedade": "Composto Orgânico"}
+        ]
+      },
+      {
+        "tipo": "Beterraba",
+        "area_plantio": "7 hectares",
+        "insumos": [
+          {"tipo": "Semente", "quantidade": "4 kg"},
+          {"tipo": "Fertilizante", "quantidade": "110 kg", "variedade": "NPK 12-12-17"},
+          {"tipo": "Veneno", "quantidade": "12 litros", "variedade": "Fungicida"},
+          {"tipo": "Adubo", "quantidade": "160 kg", "variedade": "Composto Orgânico"}
+        ]
+      }
+    ]
+  }
+  
