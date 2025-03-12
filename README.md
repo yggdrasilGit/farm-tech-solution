@@ -8,7 +8,29 @@ Este projeto tem como objetivo permitir ao usuário selecionar duas culturas dis
 ## Estrutura do Projeto
 
 ```
-projeto_escolha_cultura/
+farm-tech-solution/
+|
+|--farm-tech-solution-r/
+|.  ├── R/                # Scripts R (funções, análises, etc.)
+│   |   ├── data_visualisation_cultura.Rmd
+│   |   ├── script_stats.R
+│   |   └── funções.R
+|.  ├── data/             # Dados brutos ou limpos (pode ser subdiretório ou arquivos .csv, .xlsx, .rds)
+│   |    ├── test.json
+│   |    └── 
+|.  ├── docs/             # Documentação do projeto (relatórios, artigos, descrições)
+|.  |-- farm-tec-solution.Rproj # Instancia do projeto
+│   └── README.md
+|   ├── inst/             # Arquivos adicionais, como imagens ou fontes
+│   |   └── logo.png
+|.  ├── output/           # Resultados do projeto (gráficos, tabelas, modelos)
+│   |   ├── gráficos/
+│   |   └── modelos/
+|.  ├── tests/            # Testes automatizados (se aplicável)
+│   |   └── test_script.R
+|.  ├── DESCRIPTION       # Arquivo de descrição do pacote, se for o caso de um pacote R
+|.  ├── NAMESPACE         # Arquivo de namespace para pacotes R
+|   └── README.md         # Descrição geral do projeto
 |
 |-- calculation/
 |   |-- __init__.py
