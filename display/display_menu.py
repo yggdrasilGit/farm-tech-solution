@@ -2,6 +2,7 @@ from management.culture_manager import CultureManager
 from management.insum_manager import Insumo
 from calculation.insum_calculator import InsumoCalculator
 from display.display_area import DisplayAreaCalculator
+from api_input_data.load_data_statis import RScriptLoader
 
 class DisplayMenu:
     """
@@ -12,6 +13,7 @@ class DisplayMenu:
         self.display_area_calculador = DisplayAreaCalculator(cultura=self.culture_manager.culturas_escolhidas)
         self.insumos = {}  # Dicionário para armazenar insumos cadastrados por cultura
         self.insumo = Insumo() # instancia insumo para cadastrar 
+        self.estatistica = RScriptLoader
     
     def display(self):
         """Exibe o menu principal e gerencia as opções do usuário."""
@@ -25,6 +27,7 @@ class DisplayMenu:
             print("6️⃣ Ver insumos cadastrados")
             print("7️⃣ Ver áreas de plantio cadastradas")
             print("8️⃣ Calcular insumo")
+            print("9. Estatistica")
             print("0️⃣ Sair")
 
             opcao = input("Escolha uma opção: ").strip()
@@ -45,6 +48,8 @@ class DisplayMenu:
                 self.display_area_calculador.show_areas()
             elif opcao == "8":
                 self.calcular_insumo()
+            elif opcao == "9":
+                self.estatistica = RScriptLoader.chamar_estatistica()
             elif opcao == "0":
                 print("👋 Saindo do programa. Até mais!")
                 break
