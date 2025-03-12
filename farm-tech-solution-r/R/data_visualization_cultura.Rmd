@@ -1,6 +1,9 @@
 ---
 title: "data_visualisation_cultura"
-output: html_document
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
 date: "2025-03-11"
 ---
 
@@ -75,6 +78,7 @@ print(df)
 
 
 ## Analise estatistica do data frame
+### Media e desvio padrao da area de plantio
 
 ```{r}
 
@@ -89,6 +93,69 @@ print(paste("Desvio Padrão:", desvio_padrao))
 
 
 ```
+
+
+### calcular a media das sementes (sementes_quantidades)
+```{r}
+
+media <- mean(df$semente_quantidade_kg)
+
+# Calculando o desvio padrão
+desvio_padrao <- sd(df$semente_quantidade_kg)
+
+# Exibindo os resultados
+print(paste("Média:", media))
+print(paste("Desvio Padrão:", desvio_padrao))
+
+
+```
+
+### calcular a media das sementes (coluna: fertilizante_quantidades)
+```{r}
+
+media <- mean(df$fertilizante_quantidade_kg)
+
+# Calculando o desvio padrão
+desvio_padrao <- sd(df$fertilizante_quantidade_kg)
+
+# Exibindo os resultados
+print(paste("Média:", media))
+print(paste("Desvio Padrão:", desvio_padrao))
+
+
+```
+
+
+### calcular a media das sementes (coluna: veneno_quantidades)
+```{r}
+
+media <- mean(df$veneno_quantidade_litros)
+
+# Calculando o desvio padrão
+desvio_padrao <- sd(df$veneno_quantidade_litros)
+
+# Exibindo os resultados
+print(paste("Média:", media))
+print(paste("Desvio Padrão:", desvio_padrao))
+
+
+```
+
+### calcular a media das sementes (coluna: adubo_quantidades)
+```{r}
+
+media <- mean(df$adubo_quantidade_kg)
+
+# Calculando o desvio padrão
+desvio_padrao <- sd(df$adubo_quantidade_kg)
+
+# Exibindo os resultados
+print(paste("Média:", media))
+print(paste("Desvio Padrão:", desvio_padrao))
+
+
+```
+
 
 
 
