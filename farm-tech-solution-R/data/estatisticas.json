@@ -1,0 +1,22 @@
+{
+  "rocas.area_plantio": {
+    "media": [12.8929],
+    "desvio_padrao": [5.9959]
+  },
+  "semente_quantidade_kg": {
+    "media": [240.3571],
+    "desvio_padrao": [159.3954]
+  },
+  "fertilizante_quantidade_kg": {
+    "media": [575.7143],
+    "desvio_padrao": [314.2237]
+  },
+  "veneno_quantidade_litros": {
+    "media": [59.8929],
+    "desvio_padrao": [30.3246]
+  },
+  "adubo_quantidade_kg": {
+    "media": [684.2857],
+    "desvio_padrao": [345.3761]
+  }
+}
