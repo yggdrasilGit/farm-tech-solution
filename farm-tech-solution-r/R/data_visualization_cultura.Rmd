@@ -12,16 +12,20 @@ date: "2025-03-11"
 Tem por obijetivo visualizar os dados, de plantio de culturas como soja, milho, batata,... inivialmente iremos instalar o pacote necessario.
 
 ```{r}
-install.packages("jsonlite")
+#install.packages("jsonlite")
+#install.packages("tidyr")
+# install.packages("tidygeocoder")
 install.packages("dplyr")
-install.packages("tidyr")
 ```
 ## Carregar pacotes
 
 ```{r jsonlite}
-library('jsonlite')
+# library('jsonlite')
+# library('dplyr')
+# library('tidyr')
+library('tidygeocoder')
 library('dplyr')
-library('tidyr')
+
 ```
 
 ## Carregar o arquivo.
@@ -156,9 +160,89 @@ print(paste("Desvio Padrão:", desvio_padrao))
 
 ```
 
+## implementando dados de geolocalizacao
+```{r}
+
+# Verifica se a função existe
+if (!exists("geocode")) {
+  stop("A função geocode não está disponível. Verifique se o tidygeocoder foi instalado corretamente.")
+}
+
+# Tenta geocodificar a cidade usando OpenStreetMap
+resultado <- tibble(location = "Parauna, Brasil") %>%
+  geocode(location, method = "osm")
+
+print(resultado)
+
+```
+
+## salvar arquivo json de geolocalizacao
+```{r}
+
+# Carregar a biblioteca necessária
+library(jsonlite)
+
+# Definir um diretório específico onde os arquivos JSON serão salvos
+get_data_directory <- function() {
+  # Defina o caminho base para salvar os arquivos JSON
+  base_dir <- file.path("~", "Documents", "GitHub", "farm-tech-solution", "farm-tech-solution-R", "data")
+  
+  # Normalizar o caminho para garantir compatibilidade com qualquer SO
+  normalized_dir <- normalizePath(base_dir, mustWork = FALSE)
+  
+  # Criar o diretório, se não existir
+  dir.create(normalized_dir, showWarnings = FALSE, recursive = TRUE)
+  
+  return(normalized_dir)
+}
+
+# Função para salvar dados JSON no diretório específico
+save_json <- function(data, file_name) {
+  directory <- get_data_directory()  # Obtém o diretório correto
+
+  # Caminho completo do arquivo JSON
+  file_path <- file.path(directory, paste0(file_name, ".json"))
+
+  # Salvar os dados em JSON
+  write_json(data, file_path, pretty = TRUE, auto_unbox = TRUE)
+  cat("Dados salvos em:", file_path, "\n")
+}
+
+# Função para carregar dados JSON do diretório específico
+load_json <- function(file_name) {
+  directory <- get_data_directory()  # Obtém o diretório correto
+
+  # Caminho completo do arquivo JSON
+  file_path <- file.path(directory, paste0(file_name, ".json"))
+
+  # Verificar se o arquivo existe
+  if (file.exists(file_path)) {
+    data <- fromJSON(file_path)
+    return(data)
+  } else {
+    cat("Arquivo não encontrado:", file_path, "\n")
+    return(NULL)
+  }
+}
+
+# 🔥 **Exemplo de uso**
+# Criar um exemplo de dados
+data <- resultado
+
+# Converter o data frame para JSON
+json_data <- toJSON(data, pretty = TRUE)
+
+# Salvar os dados no JSON
+save_json(data, "cidade")
+
+# Carregar os dados do JSON
+loaded_data <- load_json("cidade")
+print(loaded_data)
 
 
+# Dados salvos em: /Users/francismaralvesmartinsjunior/Library/Application Support/org.R-project.R/R/farm_tech_solution/config.json 
 
+```
 
 
 

@@ -91,8 +91,69 @@ calcular_estatisticas <- function(df, colunas) {
 # estatisticas <- calcular_estatisticas(df, colunas_para_analisar)
 
 
+# Definir a função para obter coordenadas de um local
+# Definir a função para obter coordenadas de um local
+get_geocode <- function(location_name) {
+  # Verifica se a função geocode existe
+  if (!exists("geocode")) {
+    stop("A função geocode não está disponível. Verifique se o pacote 'tidygeocoder' foi instalado corretamente.")
+  }
+  
+  # Tenta geocodificar a cidade usando OpenStreetMap (OSM)
+  resultado <- tibble(location = location_name) %>%
+    geocode(location, method = "osm")
+  
+  return(resultado)
+}
 
 
+# 🔥 **Exemplo de uso da função**
+# resultado <- get_geocode("Parauna, Brasil")
+# print(resultado)
+
+
+#buscasr o diretorio data 
+get_data_directory <- function() {
+  # Defina o caminho base para salvar os arquivos JSON
+  base_dir <- file.path("~", "Documents", "GitHub", "farm-tech-solution", "farm-tech-solution-R", "data")
+  
+  # Normalizar o caminho para garantir compatibilidade com qualquer SO
+  normalized_dir <- normalizePath(base_dir, mustWork = FALSE)
+  
+  # Criar o diretório, se não existir
+  dir.create(normalized_dir, showWarnings = FALSE, recursive = TRUE)
+  
+  return(normalized_dir)
+}
+
+# Função para salvar dados JSON no diretório específico
+save_json <- function(data, file_name) {
+  directory <- get_data_directory()  # Obtém o diretório correto
+  
+  # Caminho completo do arquivo JSON
+  file_path <- file.path(directory, paste0(file_name, ".json"))
+  
+  # Salvar os dados em JSON
+  write_json(data, file_path, pretty = TRUE, auto_unbox = TRUE)
+  cat("Dados salvos em:", file_path, "\n")
+}
+
+# Função para carregar dados JSON do diretório específico
+load_json <- function(file_name) {
+  directory <- get_data_directory()  # Obtém o diretório correto
+  
+  # Caminho completo do arquivo JSON
+  file_path <- file.path(directory, paste0(file_name, ".json"))
+  
+  # Verificar se o arquivo existe
+  if (file.exists(file_path)) {
+    data <- fromJSON(file_path)
+    return(data)
+  } else {
+    cat("Arquivo não encontrado:", file_path, "\n")
+    return(NULL)
+  }
+}
 
 
 
