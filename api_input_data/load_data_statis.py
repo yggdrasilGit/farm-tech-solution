@@ -1,68 +1,82 @@
 import rpy2.robjects as robjects
-import os
+from pathlib import Path
 import json
 from tabulate import tabulate
 
-
-""" Esta classe tem por objetivo carregar scripts r para python 
-
-Metodos:
-    __init__
-        diretorio: colocar o caminho do diretorio onde estão os 
-                    scripts em r
-        nome_script: colocar o nome do arquivo.R
-
-    carregar_script:
-        
-        Ele busca executa e carrega o script.r
-"""
 class RScriptLoader:
-    def __init__(self, diretorio,  subdiretorio, nome_script):
-        self.diretorio = diretorio
-        self.nome_script = nome_script
-        self.subdiretorio = subdiretorio
-        self.script_path = os.path.join(diretorio, subdiretorio, nome_script )
+    def __init__(self, nome_script):
+        self.script_path = self.encontrar_arquivo(nome_script)
+        self.json_path = None  # Definido depois da execução do script
+
+    def encontrar_arquivo(self, nome_arquivo, raiz_busca="."):
+        """Procura recursivamente por um arquivo dentro da estrutura do projeto."""
+        raiz_busca = Path(raiz_busca).resolve()
+
+        for item in raiz_busca.rglob(nome_arquivo):
+            if item.is_file():
+                print(f"✅ Arquivo encontrado: {item}")
+                return item
+
+        print(f"❌ Erro: Arquivo '{nome_arquivo}' não encontrado dentro de {raiz_busca}")
+        return None
 
     def carregar_script(self):
+        """Executa o script R se ele existir."""
+        if not self.script_path:
+            print("❌ Erro: Caminho do script R não definido.")
+            return False
+
+        print(f"📂 Executando script: {self.script_path}")
         try:
-            robjects.r.source(self.script_path)
-            print(f"Script '{self.nome_script}' carregado com sucesso.")
+            robjects.r.source(str(self.script_path))  # Executa o script R
+            print(f"✅ Script '{self.script_path.name}' carregado com sucesso.")
+            
+            # Encontrar o arquivo JSON gerado após execução do script
+            self.json_path = self.encontrar_arquivo("estatistica.json")
+            if self.json_path:
+                return True
+            else:
+                print("❌ Erro: Arquivo JSON não encontrado após execução do script.")
+                return False
         except Exception as e:
-            print(f"Erro ao carregar o script: {e}")
-    
+            print(f"❌ Erro ao carregar o script R: {e}")
+            return False
+
     def carregar_arquivo_json(self):
+        """Lê e exibe os dados do arquivo JSON gerado pelo R."""
+        if not self.json_path:
+            print("❌ Erro: Arquivo JSON não encontrado após execução do script.")
+            return None
+
+        print(f"📂 Caminho do arquivo JSON: {self.json_path}")
         try:
-            with open(self.script_path, 'r') as arquivo:
+            with self.json_path.open('r') as arquivo:
                 dados = json.load(arquivo)
 
-            # Transforma o dicionário no formato tabular
-            tabela = []
-            for chave, valores in dados.items():
-                tabela.append([chave, valores["media"][0], valores["desvio_padrao"][0]])
+            # Exibir dados formatados em tabela
+            tabela = [[chave, valores["media"][0], valores["desvio_padrao"][0]] 
+                      for chave, valores in dados.items()]
 
-            # Define os cabeçalhos
             headers = ["Parâmetro", "Média", "Desvio Padrão"]
-
-            # Exibe a tabela no terminal
-            print("\n\n\nDados estatístico das áreas plantadas")
+            print("\n📊 Dados estatísticos das áreas plantadas")
             print(tabulate(tabela, headers=headers, tablefmt="grid"))
-            print("\n\n")
+            print("\n")
 
             return dados
         except Exception as e:
-            print(f"Erro ao carregar o arquivo JSON: {e}")
+            print(f"❌ Erro ao carregar o arquivo JSON: {e}")
             return None
-    
-    def chamar_estatistica():
-        diretorio = "farm-tech-solution-R/"
-        sub_diretorio_1 = "R/"
-        sub_diretorio_2 = "data/"
-        script_1 = "script_statis.R"
-        data = "estatisticas.json"
-        loader = RScriptLoader(diretorio, sub_diretorio_1 ,script_1)
-        loader_json = RScriptLoader(diretorio, sub_diretorio_2, data)
-        loader.carregar_script()
-        
-        return loader_json.carregar_arquivo_json()
 
-        
+
+    def chamar_estatistica():
+        """Configura e executa os scripts R e JSON."""
+        script_loader = RScriptLoader("script_statis.R")
+
+        # Rodar o script R e carregar o arquivo JSON gerado
+        sucesso = script_loader.carregar_script()
+
+        if sucesso:
+            return script_loader.carregar_arquivo_json()
+        else:
+            print("❌ Falha na execução do script R.")
+            return None

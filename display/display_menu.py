@@ -52,7 +52,7 @@ class DisplayMenu:
             elif opcao == "9":
                 self.estatistica = RScriptLoader.chamar_estatistica()
             elif opcao == "10":
-                self.estatistica = RScriptLoader.chamar_estatistica()
+                pass
             elif opcao == "0":
                 print("👋 Saindo do programa. Até mais!")
                 break
