@@ -107,7 +107,7 @@ get_geocode <- function(location_name) {
 }
 
 
-# 🔥 **Exemplo de uso da função**
+# **Exemplo de uso da função**
 # resultado <- get_geocode("Parauna, Brasil")
 # print(resultado)
 

@@ -20,9 +20,9 @@ install.packages("dplyr")
 ## Carregar pacotes
 
 ```{r jsonlite}
-# library('jsonlite')
-# library('dplyr')
-# library('tidyr')
+library('jsonlite')
+library('dplyr')
+library('tidyr')
 library('tidygeocoder')
 library('dplyr')
 
@@ -169,7 +169,7 @@ if (!exists("geocode")) {
 }
 
 # Tenta geocodificar a cidade usando OpenStreetMap
-resultado <- tibble(location = "Parauna, Brasil") %>%
+resultado <- tibble(location = "Sao Caetano do Sul, Brasil") %>%
   geocode(location, method = "osm")
 
 print(resultado)
@@ -233,7 +233,7 @@ data <- resultado
 json_data <- toJSON(data, pretty = TRUE)
 
 # Salvar os dados no JSON
-save_json(data, "cidade")
+save_json(data, "latitude_longitude")
 
 # Carregar os dados do JSON
 loaded_data <- load_json("cidade")

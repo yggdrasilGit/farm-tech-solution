@@ -1,8 +1,10 @@
-library(jsonlite)
+library("jsonlite")
+library("fs")
 
-source("/Users/francismaralvesmartinsjunior/Documents/GitHub/farm-tech-solution/farm-tech-solution-R/R/funcoes.R")
+caminho_funcoes <- path("R", "funcoes.R")
+source(caminho_funcoes)
 
-arquivo_json <- "/Users/francismaralvesmartinsjunior/Documents/GitHub/farm-tech-solution/farm-tech-solution-r/data/test.json"
+arquivo_json <- path("data", "test.json")
 df_resultado <- ler_json_para_dataframe(arquivo_json)
 
 df_processado <- processar_dataframe(df_resultado)
@@ -19,7 +21,7 @@ estatisticas <- calcular_estatisticas(df_processado, colunas_para_analisar)
 estatisticas_json <- toJSON(estatisticas, pretty = TRUE)
 
 # Caminho onde o arquivo JSON será salvo
-caminho_arquivo_json <- "/Users/francismaralvesmartinsjunior/Documents/GitHub/farm-tech-solution/farm-tech-solution-r/data/estatisticas.json"
+caminho_arquivo_json <- path("data", "estatistica.json")
 
 # Salvando o arquivo JSON
 write(estatisticas_json, file = caminho_arquivo_json)
