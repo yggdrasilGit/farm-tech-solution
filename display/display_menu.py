@@ -28,6 +28,7 @@ class DisplayMenu:
             print("7️⃣ Ver áreas de plantio cadastradas")
             print("8️⃣ Calcular insumo")
             print("9. Estatistica")
+            print("10. Informações meteriologicas")
             print("0️⃣ Sair")
 
             opcao = input("Escolha uma opção: ").strip()
@@ -49,6 +50,8 @@ class DisplayMenu:
             elif opcao == "8":
                 self.calcular_insumo()
             elif opcao == "9":
+                self.estatistica = RScriptLoader.chamar_estatistica()
+            elif opcao == "10":
                 self.estatistica = RScriptLoader.chamar_estatistica()
             elif opcao == "0":
                 print("👋 Saindo do programa. Até mais!")
