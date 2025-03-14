@@ -53,11 +53,11 @@ class Menu:
 
     def calculate_area(self):
         """Calcula a área de plantio em hectares para cada cultura escolhida."""
-        if not self.culture_manager.culturas_escolhidas:
+        if not self.culture_manager.cultura_escolhida:
             print("⚠️ Você precisa escolher as culturas primeiro.")
             return
 
-        for cultura in self.culture_manager.culturas_escolhidas:
+        for cultura in self.culture_manager.cultura_escolhida:
             print(f"\nCalculando área para a cultura: {cultura.capitalize()}")
 
             print("Escolha a forma da área de plantio:")
@@ -95,7 +95,7 @@ class Menu:
                 altura = float(input("Digite a altura do trapézio (km): "))
                 area = AreaCalculator.calcular_trapezio(base1, base2, altura)
             else:
-                print("❌ Opção inválida. Tente novamente.")
+                print("❌ Opção inválida. Voltando ao menu principal.")
                 continue  # Volta para o início do loop
 
             # Salvando a área calculada no dicionário
@@ -104,11 +104,11 @@ class Menu:
 
     def register_inputs(self):
         """Cadastra insumos para as culturas escolhidas."""
-        if not self.culture_manager.culturas_escolhidas:
+        if not self.culture_manager.cultura_escolhida:
             print("⚠️ Você precisa escolher as culturas primeiro.")
             return
 
-        for cultura in self.culture_manager.culturas_escolhidas:
+        for cultura in self.culture_manager.cultura_escolhida:
             print(f"\nCadastrando insumos para a cultura: {cultura.capitalize()}")
             self.insumo.cadastrar_insumos()
             self.insumos[cultura] = self.insumo  # Armazena o objeto Insumo por cultura

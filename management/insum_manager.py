@@ -1,13 +1,17 @@
+from management.culture_manager import CultureManager
+
+
 class Insumo:
     """
     Classe para gerenciar os insumos necessários para o plantio de uma cultura.
     """
     def __init__(self):
         self.insumos = []  # Lista de insumos cadastrados para a cultura
+        self.cultura = CultureManager()
     
     def cadastrar_insumos(self):
         """Permite ao usuário cadastrar os tipos de insumos para a cultura."""
-        print(f"\n🔹 Cadastro de insumos para a cultura: {self.cultura}")
+        print(f"\n🔹 Cadastro de insumos para a cultura: {self.cultura_escolhida}")
         while True:
             nome_insumo = input("Digite o nome do insumo (ou 'sair' para finalizar): ").strip()
             if nome_insumo.lower() == 'sair':
@@ -26,6 +30,6 @@ class Insumo:
         if not self.insumos:
             print("⚠️ Nenhum insumo cadastrado para esta cultura.")
             return
-        print(f"\n📌 Insumos cadastrados para a cultura: {self.cultura}")
+        print(f"\n📌 Insumos cadastrados para a cultura: {self.cultura_escolhida}")
         for insumo in self.insumos:
             print(f"- {insumo['nome']}: {insumo['quantidade']} {insumo['unidade']}")
