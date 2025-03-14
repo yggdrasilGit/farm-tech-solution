@@ -14,7 +14,10 @@ print(paste("📂 Caminho absoluto do arquivo de funções:", caminho_funcoes_ab
 
 source(caminho_funcoes_absoluto)
 
-cidade <- get_geocode("Parauna, Brasil")
+cidade_json = load_json("cidade")
+print(cidade_json[[1]])
+
+cidade <- get_geocode(cidade_json[[1]])
 
 salvar <- save_json(cidade, "latitude_longitude")
 

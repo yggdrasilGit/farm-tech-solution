@@ -30,7 +30,8 @@ previsao <- obter_previsao(lat, lon, api_key)
 data_climatico <- load_json("dados_climaticos")
 
 dados_climaticoss <- processar_dados_clima(data_climatico)
+print(dados_climaticoss)
 
-salve_
+salvar <- save_json(dados_climaticoss,"clima_portugues" )
 
 # retornar dados meteriologicos.
