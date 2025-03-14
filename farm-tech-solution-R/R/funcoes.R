@@ -126,15 +126,20 @@ get_data_directory <- function() {
   return(normalized_dir)
 }
 
-# Função para salvar dados JSON no diretório específico
 save_json <- function(data, file_name) {
   directory <- get_data_directory()  # Obtém o diretório correto
+  
+  # Criar diretório se não existir
+  if (!dir.exists(directory)) {
+    dir.create(directory, recursive = TRUE)
+  }
   
   # Caminho completo do arquivo JSON
   file_path <- file.path(directory, paste0(file_name, ".json"))
   
   # Salvar os dados em JSON
   write_json(data, file_path, pretty = TRUE, auto_unbox = TRUE)
+  
   cat("Dados salvos em:", file_path, "\n")
 }
 
@@ -153,6 +158,84 @@ load_json <- function(file_name) {
     cat("Arquivo não encontrado:", file_path, "\n")
     return(NULL)
   }
+}
+
+
+# Função para obter dados meteorológicos
+
+# Função para obter dados meteorológicos (API gratuita)
+
+
+# Função para obter dados meteorológicos
+# Função para obter dados meteorológicos
+obter_previsao <- function(lat, lon, api_key) {
+  # Construir a URL da API
+  url <- paste0("https://api.openweathermap.org/data/2.5/weather?",
+                "lat=", lat,
+                "&lon=", lon,
+                "&appid=", api_key,
+                "&lang=pt_br",
+                "&units=metric")
+  
+  # Fazer a requisição GET
+  resposta <- GET(url)
+  
+  # Verificar se a requisição foi bem-sucedida
+  if (status_code(resposta) == 200) {
+    # Obter o conteúdo da resposta
+    dados <- content(resposta, as = "text", encoding = "UTF-8")
+    
+    # Converter o JSON para uma lista R
+    dados_json <- save_json(dados, "dados_climaticos")
+    
+ 
+      return()
+    
+  }
+}
+
+# processamento climaticp
+processar_dados_clima <- function(json_dados) {
+  # Converter JSON para lista
+  dados_lista <- fromJSON(json_dados, simplifyVector = FALSE)  # Desativa conversão automática para data.frame
+  
+  # Verificar estrutura dos dados (para diagnóstico)
+  str(dados_lista)
+  
+  # Acessar os dados do clima de forma segura
+  if (!is.null(dados_lista$weather) && length(dados_lista$weather) > 0) {
+    weather_list <- dados_lista$weather[[1]]  # Pegar o primeiro item da lista
+    clima_descricao <- weather_list$description
+    clima_tipo <- weather_list$main
+  } else {
+    clima_descricao <- NA
+    clima_tipo <- NA
+  }
+  
+  # Criar data frame com os dados extraídos
+  dados_clima <- data.frame(
+    Cidade = dados_lista$name,
+    País = dados_lista$sys$country,
+    Latitude = dados_lista$coord$lat,
+    Longitude = dados_lista$coord$lon,
+    Temperatura = dados_lista$main$temp,
+    Sensação_Térmica = dados_lista$main$feels_like,
+    Temp_Mínima = dados_lista$main$temp_min,
+    Temp_Máxima = dados_lista$main$temp_max,
+    Pressão_Atmosférica = dados_lista$main$pressure,
+    Umidade = dados_lista$main$humidity,
+    Visibilidade = dados_lista$visibility,
+    Velocidade_do_Vento = dados_lista$wind$speed,
+    Direção_do_Vento = dados_lista$wind$deg,
+    Cobertura_de_Nuvens = dados_lista$clouds$all,
+    Descrição_do_Clima = clima_descricao,
+    Tipo_de_Clima = clima_tipo,
+    Nascer_do_Sol = as.POSIXct(dados_lista$sys$sunrise, origin = "1970-01-01", tz = "GMT"),
+    Pôr_do_Sol = as.POSIXct(dados_lista$sys$sunset, origin = "1970-01-01", tz = "GMT"),
+    Fuso_Horário = dados_lista$timezone
+  )
+  
+  return(dados_clima)
 }
 
 
