@@ -27,8 +27,8 @@ class DisplayMenu:
             print("6️⃣ Ver insumos cadastrados")
             print("7️⃣ Ver áreas de plantio cadastradas")
             print("8️⃣ Calcular insumo")
-            print("9. Estatistica")
-            print("10. Informações meteriologicas")
+            print("9️⃣ Estatistica")
+            print("🔟 Informações meteriologicas")
             print("0️⃣ Sair")
 
             opcao = input("Escolha uma opção: ").strip()
