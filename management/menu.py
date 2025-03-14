@@ -19,11 +19,11 @@ class Menu:
 
     def register_inputs(self):
         """Cadastra insumos para as culturas escolhidas."""
-        if not self.culture_manager.culturas_escolhidas:
+        if not self.culture_manager.cultura_escolhida:
             print("⚠️ Você precisa escolher as culturas primeiro.")
             return
 
-        for cultura in self.culture_manager.culturas_escolhidas:
+        for cultura in self.culture_manager.cultura_escolhida:
             print(f"\nCadastrando insumos para a cultura: {cultura.capitalize()}")
             self.insumo.cadastrar_insumos()
             self.insumos[cultura] = self.insumo  # Armazena o objeto Insumo por cultura

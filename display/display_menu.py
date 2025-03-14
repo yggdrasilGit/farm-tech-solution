@@ -10,7 +10,7 @@ class DisplayMenu:
     """
     def __init__(self):
         self.culture_manager = CultureManager()
-        self.display_area_calculador = DisplayAreaCalculator(cultura=self.culture_manager.culturas_escolhidas)
+        self.display_area_calculador = DisplayAreaCalculator(cultura=self.culture_manager.cultura_escolhida)
         self.insumos = {}  # Dicionário para armazenar insumos cadastrados por cultura
         self.insumo = Insumo() # instancia insumo para cadastrar 
         self.estatistica = RScriptLoader
@@ -61,11 +61,11 @@ class DisplayMenu:
               
     def register_inputs(self):
         """Cadastra insumos para as culturas escolhidas."""
-        if not self.culture_manager.culturas_escolhidas:
+        if not self.culture_manager.cultura_escolhida:
             print("⚠️ Você precisa escolher as culturas primeiro.")
             return
 
-        for cultura in self.culture_manager.culturas_escolhidas:
+        for cultura in self.culture_manager.cultura_escolhida:
             print(f"\nCadastrando insumos para a cultura: {cultura.capitalize()}")
             self.insumo.cadastrar_insumos()
             self.insumos[cultura] = self.insumo  # Armazena o objeto Insumo por cultura

@@ -4,7 +4,7 @@ class CultureManager:
     """
     def __init__(self):
         self.culturas_disponiveis = set()
-        self.culturas_escolhidas = set()
+        self.cultura_escolhida = set()
 
     def register_culture(self):
         """Permite ao usuário cadastrar novas culturas."""
@@ -31,16 +31,16 @@ class CultureManager:
             print("⚠️ Nenhuma cultura cadastrada. Cadastre primeiro antes de escolher.")
             return
 
-        self.culturas_escolhidas.clear()
-        while len(self.culturas_escolhidas) < 2:
+        self.cultura_escolhida.clear()
+        while len(self.cultura_escolhida) < 2:
             self.registered_cultures()
             cultura = input("Digite a cultura que deseja trabalhar: ").strip().lower()
 
             if cultura not in self.culturas_disponiveis:
                 print("❌ Cultura não cadastrada. Cadastre primeiro antes de escolher.")
-            elif cultura in self.culturas_escolhidas:
+            elif cultura in self.cultura_escolhida:
                 print("⚠️ Cultura já escolhida. Escolha uma diferente.")
             else:
-                self.culturas_escolhidas.add(cultura)
+                self.cultura_escolhida.add(cultura)
 
-        print(f"✅ As culturas escolhidas foram: {', '.join(map(str.capitalize, self.culturas_escolhidas))}")
+        print(f"✅ As culturas escolhidas foram: {', '.join(map(str.capitalize, self.cultura_escolhida))}")
