@@ -1,4 +1,4 @@
-
+from ..display.display_meteriologica import Cidade
 
 def informacao_meteorologicas():
     nome_cidade = input('digite o nome da cidade: ')
