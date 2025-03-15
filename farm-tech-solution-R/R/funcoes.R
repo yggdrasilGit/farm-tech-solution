@@ -215,24 +215,24 @@ processar_dados_clima <- function(json_dados) {
   # Criar data frame com os dados extraídos
   dados_clima <- data.frame(
     Cidade = dados_lista$name,
-    País = dados_lista$sys$country,
+    Pais = dados_lista$sys$country,
     Latitude = dados_lista$coord$lat,
     Longitude = dados_lista$coord$lon,
     Temperatura = dados_lista$main$temp,
-    Sensação_Térmica = dados_lista$main$feels_like,
-    Temp_Mínima = dados_lista$main$temp_min,
-    Temp_Máxima = dados_lista$main$temp_max,
-    Pressão_Atmosférica = dados_lista$main$pressure,
+    Sensacao_Termica = dados_lista$main$feels_like,
+    Temp_Minima = dados_lista$main$temp_min,
+    Temp_Maxima = dados_lista$main$temp_max,
+    Pressao_Atmosferica = dados_lista$main$pressure,
     Umidade = dados_lista$main$humidity,
     Visibilidade = dados_lista$visibility,
     Velocidade_do_Vento = dados_lista$wind$speed,
-    Direção_do_Vento = dados_lista$wind$deg,
+    Direcao_do_Vento = dados_lista$wind$deg,
     Cobertura_de_Nuvens = dados_lista$clouds$all,
-    Descrição_do_Clima = clima_descricao,
+    Descricao_do_Clima = clima_descricao,
     Tipo_de_Clima = clima_tipo,
     Nascer_do_Sol = as.POSIXct(dados_lista$sys$sunrise, origin = "1970-01-01", tz = "GMT"),
-    Pôr_do_Sol = as.POSIXct(dados_lista$sys$sunset, origin = "1970-01-01", tz = "GMT"),
-    Fuso_Horário = dados_lista$timezone
+    Por_do_Sol = as.POSIXct(dados_lista$sys$sunset, origin = "1970-01-01", tz = "GMT"),
+    Fuso_Horario = dados_lista$timezone
   )
   
   return(dados_clima)
