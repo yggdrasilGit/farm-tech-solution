@@ -6,7 +6,7 @@ library('httr')
 
 
 # Define o caminho do arquivo de funções (utilizando 'here' para resolução do caminho)
-caminho_funcoes_relativo <- here("R", "funcoes.R")  # Caminho relativo do arquivo
+caminho_funcoes_relativo <- here("farm-tech-solution-R/R", "funcoes.R")  # Caminho relativo do arquivo
 print(caminho_funcoes_relativo)
 # Exibir o caminho absoluto antes de carregar o script
 caminho_funcoes_absoluto <- path_abs(caminho_funcoes_relativo)  # Obtém o caminho absoluto

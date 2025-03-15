@@ -1,8 +1,12 @@
+from api_input_data.load_api_metereologica import RClimateDataLoader
+from api_input_data.load_data_meteriologist import MeteorologistDataLoader
+from api_input_data.loard_api_geolocalizacao import RGeolocationLoader
 from management.culture_manager import CultureManager
 from management.insum_manager import Insumo
 from calculation.insum_calculator import InsumoCalculator
 from display.display_area import DisplayAreaCalculator
 from api_input_data.load_data_statis import RScriptLoader
+from display.display_meteriologica import Cidade
 
 class DisplayMenu:
     """
@@ -15,6 +19,7 @@ class DisplayMenu:
         self.insumo = Insumo() # instancia insumo para cadastrar 
         self.estatistica = RScriptLoader
         self.area_plantio = self.display_area_calculador
+     
     
     def display(self):
         """Exibe o menu principal e gerencia as opções do usuário."""
@@ -53,7 +58,19 @@ class DisplayMenu:
             elif opcao == "9":
                 self.estatistica = RScriptLoader.chamar_estatistica()
             elif opcao == "10":
-                pass
+                nome_cidade = input("Digite o nome da cidade: ")
+                cidade = Cidade(nome_cidade)
+                print(cidade.mostrar_cidade())
+                print(cidade.buscar_informacoes())
+                caminho_arquivo = cidade.salvar_em_json()
+                print(f"Informações salvas em {caminho_arquivo}")
+                geo_loader = RGeolocationLoader()
+                geo_loader.executar_geolocalizacao()
+                loader = RClimateDataLoader()
+                loader.executar_script()
+                nome_arquivo = "clima_portugues.json"  # Nome do arquivo JSON
+                loader = MeteorologistDataLoader(nome_arquivo)
+                dados_clima = loader.carregar_arquivo_json()
             elif opcao == "0":
                 print("👋 Saindo do programa. Até mais!")
                 break

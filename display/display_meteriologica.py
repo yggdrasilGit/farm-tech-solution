@@ -23,12 +23,12 @@ class Cidade:
         return diretorio  # Retorna o caminho salvo
 
 # Exemplo de uso
-nome_cidade = input("Digite o nome da cidade: ")
-cidade = Cidade(nome_cidade)
-print(cidade.mostrar_cidade())
-print(cidade.buscar_informacoes())
+#nome_cidade = input("Digite o nome da cidade: ")
+#cidade = Cidade(nome_cidade)
+#print(cidade.mostrar_cidade())
+#print(cidade.buscar_informacoes())
 
 # Salvar no arquivo JSON e exibir o caminho salvo
-caminho_arquivo = cidade.salvar_em_json()
-print(f"Informações salvas em {caminho_arquivo}")
+#caminho_arquivo = cidade.salvar_em_json()
+#print(f"Informações salvas em {caminho_arquivo}")
 

@@ -1,10 +1,21 @@
 from display_meteriologica import Cidade
 
-def informacao_meteorologicas():
-    nome_cidade = input('digite o nome da cidade: ')
-    cidade = Cidade(nome_cidade)
-    cidade.mostrar_cidade()
+class MeteorologistApp:
+    def __init__(self):
+        self.cidade = None
 
-informacao_meteorologicas()
+    def obter_informacoes(self):
+        nome_cidade = input('Digite o nome da cidade: ')
+        self.cidade = Cidade(nome_cidade)
+        self.cidade.mostrar_cidade()
+
+    def executar(self):
+        self.obter_informacoes()
+        
+
+if __name__ == "__main__":
+    app = MeteorologistApp()
+    app.executar()
+
 
 

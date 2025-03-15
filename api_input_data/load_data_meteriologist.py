@@ -1,12 +1,10 @@
-import rpy2.robjects as robjects
-from pathlib import Path
 import json
+from pathlib import Path
 from tabulate import tabulate
 
-class RLoaderMeteriologist:
-    def __init__(self, nome_script):
-        self.script_path = self.encontrar_arquivo(nome_script)
-        self.json_path = None  # Definido depois da execução do script
+class MeteorologistDataLoader:
+    def __init__(self, nome_arquivo_json):
+        self.json_path = self.encontrar_arquivo(nome_arquivo_json)
 
     def encontrar_arquivo(self, nome_arquivo, raiz_busca="."):
         """Procura recursivamente por um arquivo dentro da estrutura do projeto."""
@@ -20,63 +18,61 @@ class RLoaderMeteriologist:
         print(f"❌ Erro: Arquivo '{nome_arquivo}' não encontrado dentro de {raiz_busca}")
         return None
 
-    def carregar_script(self):
-        """Executa o script R se ele existir."""
-        if not self.script_path:
-            print("❌ Erro: Caminho do script R não definido.")
-            return False
-
-        print(f"📂 Executando script: {self.script_path}")
-        try:
-            robjects.r.source(str(self.script_path))  # Executa o script R
-            print(f"✅ Script '{self.script_path.name}' carregado com sucesso.")
-            
-            # Encontrar o arquivo JSON gerado após execução do script
-            self.json_path = self.encontrar_arquivo("estatistica.json")
-            if self.json_path:
-                return True
-            else:
-                print("❌ Erro: Arquivo JSON não encontrado após execução do script.")
-                return False
-        except Exception as e:
-            print(f"❌ Erro ao carregar o script R: {e}")
-            return False
-
     def carregar_arquivo_json(self):
-        """Lê e exibe os dados do arquivo JSON gerado pelo R."""
+        """Lê e exibe os dados do arquivo JSON gerado."""
         if not self.json_path:
-            print("❌ Erro: Arquivo JSON não encontrado após execução do script.")
+            print("❌ Erro: Arquivo JSON não encontrado.")
             return None
 
         print(f"📂 Caminho do arquivo JSON: {self.json_path}")
         try:
-            with self.json_path.open('r') as arquivo:
+            with self.json_path.open('r', encoding='utf-8') as arquivo:
                 dados = json.load(arquivo)
 
-            # Exibir dados formatados em tabela
-            tabela = [[chave, valores["media"][0], valores["desvio_padrao"][0]] 
-                      for chave, valores in dados.items()]
+            if not isinstance(dados, list) or not dados:
+                print("❌ Erro: O JSON não contém uma lista válida de dados.")
+                return None
 
-            headers = ["Parâmetro", "Média", "Desvio Padrão"]
-            print("\n📊 Dados estatísticos das áreas plantadas")
+            # Pegando o primeiro elemento da lista
+            clima = dados[0]
+
+            # Criando uma tabela formatada
+            tabela = [
+                ["Cidade", clima["Cidade"]],
+                ["País", clima["Pais"]],
+                ["Latitude", clima["Latitude"]],
+                ["Longitude", clima["Longitude"]],
+                ["Temperatura (°C)", clima["Temperatura"]],
+                ["Sensação Térmica (°C)", clima["Sensacao_Termica"]],
+                ["Temperatura Mínima (°C)", clima["Temp_Minima"]],
+                ["Temperatura Máxima (°C)", clima["Temp_Maxima"]],
+                ["Pressão Atmosférica (hPa)", clima["Pressao_Atmosferica"]],
+                ["Umidade (%)", clima["Umidade"]],
+                ["Visibilidade (m)", clima["Visibilidade"]],
+                ["Velocidade do Vento (m/s)", clima["Velocidade_do_Vento"]],
+                ["Direção do Vento (°)", clima["Direcao_do_Vento"]],
+                ["Cobertura de Nuvens (%)", clima["Cobertura_de_Nuvens"]],
+                ["Descrição do Clima", clima["Descricao_do_Clima"]],
+                ["Tipo de Clima", clima["Tipo_de_Clima"]],
+                ["Nascer do Sol", clima["Nascer_do_Sol"]],
+                ["Pôr do Sol", clima["Por_do_Sol"]],
+                ["Fuso Horário (s)", clima["Fuso_Horario"]],
+            ]
+
+            headers = ["Parâmetro", "Valor"]
+            print("\n📊 Dados Meteorológicos\n")
             print(tabulate(tabela, headers=headers, tablefmt="grid"))
             print("\n")
 
-            return dados
+            return clima
         except Exception as e:
             print(f"❌ Erro ao carregar o arquivo JSON: {e}")
             return None
 
 
-    def chamar_estatistica():
-        """Configura e executa os scripts R e JSON."""
-        script_loader = RScriptLoader("script_statis.R")
 
-        # Rodar o script R e carregar o arquivo JSON gerado
-        sucesso = script_loader.carregar_script()
-
-        if sucesso:
-            return script_loader.carregar_arquivo_json()
-        else:
-            print("❌ Falha na execução do script R.")
-            return None
+# Exemplo de uso:
+if __name__ == "__main__":
+    nome_arquivo = "clima_portugues.json"  # Nome do arquivo JSON
+    loader = MeteorologistDataLoader(nome_arquivo)
+    dados_clima = loader.carregar_arquivo_json()
