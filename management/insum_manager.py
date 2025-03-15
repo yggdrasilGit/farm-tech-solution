@@ -38,6 +38,12 @@ class Insumo:
         return self.insumos if self.insumos else []
     
     def quantidade_insumo(self):
-        insumo_quantidade = self.insumos["quantidade"]
-        return insumo_quantidade
+        """Exibe os insumos cadastrados de forma organizada."""
+        if not self.insumos:
+            print("⚠️ Nenhum insumo cadastrado para esta cultura.")
+            return
+        print(f"\n📌 Insumos cadastrados para a cultura: {self.cultura.cultura_escolhida}")
+        for insumo in self.insumos:
+            return float(insumo['quantidade'])
+
     

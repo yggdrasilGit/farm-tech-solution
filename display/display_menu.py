@@ -11,7 +11,7 @@ class DisplayMenu:
     def __init__(self):
         self.culture_manager = CultureManager()
         self.display_area_calculador = DisplayAreaCalculator(cultura=self.culture_manager.cultura_escolhida)
-        self.insumos = []  # Dicionário para armazenar insumos cadastrados por cultura
+        self.insumos = {}  # Dicionário para armazenar insumos cadastrados por cultura
         self.insumo = Insumo() # instancia insumo para cadastrar 
         self.estatistica = RScriptLoader
         self.area_plantio = self.display_area_calculador
@@ -99,13 +99,17 @@ class DisplayMenu:
                 continue
             
             print(f"\n📊 Calculando insumos para a cultura {cultura.capitalize()}...")
-            quantidade_insumo = self.insumo.quantidade_insumo()
-            print(quantidade_insumo)
-            
-            for quantidade_por_hectare in self.insumos.exibir_insumos():
-                quantidade_por_hectare = self.area_plantio.area[quantidade_por_hectare]
-                quantidade_insumo = self.insumos.quantidade_insumo()
-                quantidade_total = InsumoCalculator.calcular_insumo(quantidade_por_hectare, area)
-                print(f"🔹 {self.insumo.exibir_insumos()}: {quantidade_total:.2f} unidades necessárias para {area:.2f} hectares.")
+            _quantidade = len(self.insumo.exibir_insumos())
+
+            for i in range(_quantidade):
+                print(i)
+                area_plantada = self.area_plantio.area
+                print(area_plantada[0])
+                area = area_plantada[i]
+                quantidade_insumo = self.insumo.quantidade_insumo()
+                print(quantidade_insumo, area)
+                quantidade_total = InsumoCalculator(area, quantidade_insumo)
+
+                print(f"🔹 {self.insumo.exibir_insumos()}: {quantidade_total.calcular_insumo():.2f} unidades necessárias para {area:.2f} hectares.")
 
             
