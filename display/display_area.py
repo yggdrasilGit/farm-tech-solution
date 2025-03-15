@@ -1,5 +1,4 @@
 from calculation.area_calculator import AreaCalculator
-from management.culture_manager import CultureManager
 
 class DisplayAreaCalculator():
     """
@@ -8,6 +7,7 @@ class DisplayAreaCalculator():
     def __init__(self, cultura):
        self.culture_manager = cultura
        self.areas_plantio = {}  # Dicionário para armazenar áreas por cultura
+       self.area = []
 
     
     def calculate_area(self):
@@ -70,4 +70,7 @@ class DisplayAreaCalculator():
 
         print("\n📏 Áreas de plantio cadastradas:")
         for cultura, area in self.areas_plantio.items():
+            print(area)
+            self.area.append(area)
+            print(self.area)
             print(f"🌱 Cultura: {cultura.capitalize()} - Área: {area:.2f} hectares")

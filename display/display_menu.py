@@ -14,6 +14,7 @@ class DisplayMenu:
         self.insumos = {}  # Dicionário para armazenar insumos cadastrados por cultura
         self.insumo = Insumo() # instancia insumo para cadastrar 
         self.estatistica = RScriptLoader
+        self.area_plantio = self.display_area_calculador
     
     def display(self):
         """Exibe o menu principal e gerencia as opções do usuário."""
@@ -83,7 +84,7 @@ class DisplayMenu:
     
     def calcular_insumo(self):
         """Calcula a quantidade necessária de insumos para cada cultura cadastrada."""
-        if not self.areas_plantio:
+        if not self.area_plantio:
             print("⚠️ Nenhuma área de plantio foi cadastrada ainda.")
             return
 
@@ -91,16 +92,17 @@ class DisplayMenu:
             print("⚠️ Nenhum insumo foi cadastrado ainda.")
             return
 
-        for cultura, area in self.areas_plantio.items():
+        for cultura in self.culture_manager.cultura_escolhida:
+            area = self.area_plantio.area
             if cultura not in self.insumos:
                 print(f"⚠️ Nenhum insumo cadastrado para a cultura {cultura.capitalize()}.")
                 continue
             
             print(f"\n📊 Calculando insumos para a cultura {cultura.capitalize()}...")
-            insumo = self.insumos[cultura]
+            print(self.insumo.exibir_insumos().__dir__)
             
-            for nome_insumo, quantidade_por_hectare in insumo.obter_insumos().items():
+            for quantidade_por_hectare in self.insumo.exibir_insumos():
                 quantidade_total = InsumoCalculator.calcular_insumo(quantidade_por_hectare, area)
-                print(f"🔹 {nome_insumo}: {quantidade_total:.2f} unidades necessárias para {area:.2f} hectares.")
+                print(f"🔹 {self.insumo.exibir_insumos()}: {quantidade_total:.2f} unidades necessárias para {area:.2f} hectares.")
 
             

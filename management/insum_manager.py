@@ -11,7 +11,7 @@ class Insumo:
     
     def cadastrar_insumos(self):
         """Permite ao usuário cadastrar os tipos de insumos para a cultura."""
-        print(f"\n🔹 Cadastro de insumos para a cultura: {self.cultura_escolhida}")
+        print(f"\n🔹 Cadastro de insumos para a cultura: {self.cultura.cultura_escolhida}")
         while True:
             nome_insumo = input("Digite o nome do insumo (ou 'sair' para finalizar): ").strip()
             if nome_insumo.lower() == 'sair':
@@ -30,6 +30,9 @@ class Insumo:
         if not self.insumos:
             print("⚠️ Nenhum insumo cadastrado para esta cultura.")
             return
-        print(f"\n📌 Insumos cadastrados para a cultura: {self.cultura_escolhida}")
+        print(f"\n📌 Insumos cadastrados para a cultura: {self.cultura.cultura_escolhida}")
         for insumo in self.insumos:
             print(f"- {insumo['nome']}: {insumo['quantidade']} {insumo['unidade']}")
+
+    def exibir_insumos(self):
+        return self.insumos if self.insumos else []
