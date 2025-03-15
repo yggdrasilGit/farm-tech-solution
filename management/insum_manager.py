@@ -36,3 +36,8 @@ class Insumo:
 
     def exibir_insumos(self):
         return self.insumos if self.insumos else []
+    
+    def quantidade_insumo(self):
+        insumo_quantidade = self.insumos["quantidade"]
+        return insumo_quantidade
+    
