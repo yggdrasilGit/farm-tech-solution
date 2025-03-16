@@ -1,3 +1,4 @@
+from management import culture_manager
 from management.culture_manager import CultureManager
 from management.insum_manager import Insumo
 from calculation.insum_calculator import InsumoCalculator
@@ -10,7 +11,7 @@ class Menu:
     def __init__(self):
         self.culture_manager = CultureManager()
         self.insumos = {}  # Dicionário para armazenar insumos cadastrados por cultura
-        self.insumo = Insumo() # instancia insumo para cadastrar 
+        self.insumo = Insumo()
         self.display_menu = DisplayMenu()
 
     def menu_display(self):

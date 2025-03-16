@@ -31,18 +31,21 @@ class CultureManager:
             print("⚠️ Nenhuma cultura cadastrada. Cadastre primeiro antes de escolher.")
             return
         
-        
-
-        
         self.quantidade_de_cultura = int(input("Quantas cultura voce quer trabalhar: "))
-        while len(self.cultura_escolhida) < self.quantidade_de_cultura:
-            self.registered_cultures()
-            cultura = input("Digite a cultura que deseja trabalhar (ou 'sair para voltar ao menu)': ").strip().lower()
+        if  self.quantidade_de_cultura > len(self.culturas_disponiveis):
+            print("⚠️ Você selecionou uma quantidade maior que as culturas cadastradas! Por favor, selecione uma quantidade válida.")
 
-            if cultura == "sair":
-                break
-            elif cultura not in self.culturas_disponiveis:
-                print("❌ Cultura não cadastrada. Cadastre primeiro antes de escolher.")
-            else:
-                self.cultura_escolhida.add(cultura)
-                print(f"✅ A cultura escolhida foi: {cultura.capitalize()}")
+        else:
+            while len(self.cultura_escolhida) < self.quantidade_de_cultura:
+                self.registered_cultures()
+                cultura = input("Digite a cultura que deseja trabalhar (ou 'sair para voltar ao menu)': ").strip().lower()
+
+                if cultura == "sair":
+                    break
+                elif cultura not in self.culturas_disponiveis:
+                    print("❌ Cultura não cadastrada. Cadastre primeiro antes de escolher.")
+                elif cultura in self.cultura_escolhida:
+                    print("⚠️ Cultura já escolhida! Por favor, escolha outra ou realize o cadastro de uma nova cultura.")
+                else:
+                    self.cultura_escolhida.add(cultura)
+                    print(f"✅ A cultura escolhida foi: {cultura.capitalize()}")
