@@ -74,3 +74,7 @@ class DisplayAreaCalculator():
             self.area.append(area)
             print(self.area)
             print(f"🌱 Cultura: {cultura.capitalize()} - Área: {area:.2f} hectares")
+
+    def get_area(self, cultura):
+        """Retorna a área de plantio da cultura especificada, se existir."""
+        return self.areas_plantio.get(cultura)
