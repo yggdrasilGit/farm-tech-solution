@@ -30,7 +30,6 @@ class Insumo:
         if not self.insumos:
             print("⚠️ Nenhum insumo cadastrado para esta cultura.")
             return
-        # print(f"\n📌 Insumos cadastrados para a cultura: {self.cultura.cultura_escolhida}")
         for insumo in self.insumos:
             print(f"- {insumo['nome']}: {insumo['quantidade']} {insumo['unidade']}")
 
@@ -55,16 +54,4 @@ class Insumo:
                 resultado[insumo["nome"]] = f"{quantidade_formatada} {insumo['unidade']}"
         return resultado   
 
-    # def exibir_insumos(self):
-    #     return self.insumos if self.insumos else []
-    
-    # def quantidade_insumo(self):
-    #     """Exibe os insumos cadastrados de forma organizada."""
-    #     if not self.insumos:
-    #         print("⚠️ Nenhum insumo cadastrado para esta cultura.")
-    #         return
-    #     print(f"\n📌 Insumos cadastrados para a cultura: {self.cultura.cultura_escolhida}")
-    #     for insumo in self.insumos:
-    #         return float(insumo['quantidade'])
-
-    
+ 

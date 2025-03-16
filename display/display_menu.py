@@ -123,36 +123,3 @@ class DisplayMenu:
             print(f"\n📊 Quantidade necessária de insumo para {cultura.capitalize()} em {area:.2f} hectares:")
             for nome_insumo, quantidade in quantidade_necessaria.items():
                 print(f"➡️ {nome_insumo}: {quantidade}")
-
-    
-    # def calcular_insumo(self):
-    #     """Calcula a quantidade necessária de insumos para cada cultura cadastrada."""
-    #     if not self.area_plantio:
-    #         print("⚠️ Nenhuma área de plantio foi cadastrada ainda.")
-    #         return
-
-    #     if not self.insumos:
-    #         print("⚠️ Nenhum insumo foi cadastrado ainda.")
-    #         return
-
-    #     for cultura in self.culture_manager.cultura_escolhida:
-    #         area = self.area_plantio.area
-    #         if cultura not in self.insumos:
-    #             print(f"⚠️ Nenhum insumo cadastrado para a cultura {cultura.capitalize()}.")
-    #             continue
-            
-    #         print(f"\n📊 Calculando insumos para a cultura {cultura.capitalize()}...")
-    #         _quantidade = len(self.insumo.exibir_insumos())
-
-    #         for i in range(_quantidade):
-    #             print(i)
-    #             area_plantada = self.area_plantio.area
-    #             print(area_plantada[0])
-    #             area = area_plantada[i]
-    #             quantidade_insumo = self.insumo.quantidade_insumo()
-    #             print(quantidade_insumo, area)
-    #             quantidade_total = InsumoCalculator(area, quantidade_insumo)
-
-    #             print(f"🔹 {self.insumo.exibir_insumos()}: {quantidade_total.calcular_insumo():.2f} unidades necessárias para {area:.2f} hectares.")
-
-            
