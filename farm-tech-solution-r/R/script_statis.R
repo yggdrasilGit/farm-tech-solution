@@ -11,7 +11,7 @@ encontrar_arquivo <- function(nome_arquivo, raiz_busca=".") {
   arquivos_encontrados <- dir_ls(raiz_busca, recurse = TRUE, glob = nome_arquivo)
   
   if (length(arquivos_encontrados) > 0) {
-    print(paste("✅ Arquivo encontrado:", arquivos_encontrados[1]))
+    paste(arquivos_encontrados[1])
     return(arquivos_encontrados[1])
   } else {
     print(paste("❌ Erro: Arquivo", nome_arquivo, "não encontrado dentro de", raiz_busca))
@@ -24,12 +24,11 @@ caminho_funcoes_relativo <- here("farm-tech-solution-R/R", "funcoes.R")  # Camin
 
 # Exibir o caminho absoluto antes de carregar o script
 caminho_funcoes_absoluto <- path_abs(caminho_funcoes_relativo)  # Obtém o caminho absoluto
-print(paste("📂 Caminho absoluto do arquivo de funções:", caminho_funcoes_absoluto))
+paste(caminho_funcoes_absoluto)
 
 # Verifica se o arquivo existe e carrega a função
 if (file.exists(caminho_funcoes_absoluto)) {
   source(caminho_funcoes_absoluto)  # Carregar o script de funções
-  print("✅ Funções carregadas com sucesso.")
 } else {
   stop("❌ Funções não encontradas! Verifique o caminho do arquivo 'funcoes.R'.")
 }
@@ -39,7 +38,7 @@ arquivo_json_relativo <- here("farm-tech-solution-R/data", "test.json")  # Camin
 
 # Exibir o caminho absoluto do arquivo JSON
 arquivo_json_absoluto <- path_abs(arquivo_json_relativo)  # Obtém o caminho absoluto
-print(paste("📂 Caminho absoluto do arquivo JSON:", arquivo_json_absoluto))
+paste("📂 Caminho absoluto do arquivo JSON:", arquivo_json_absoluto)
 
 # Ler o arquivo JSON e converter em um dataframe
 df_resultado <- ler_json_para_dataframe(arquivo_json_absoluto)
@@ -65,9 +64,9 @@ caminho_arquivo_json_relativo <- here("farm-tech-solution-R/data", "estatistica.
 
 # Exibir o caminho absoluto do arquivo de saída
 caminho_arquivo_json_absoluto <- path_abs(caminho_arquivo_json_relativo)  # Obtém o caminho absoluto
-print(paste("📂 Caminho absoluto do arquivo de saída:", caminho_arquivo_json_absoluto))
+paste(caminho_arquivo_json_absoluto)
 
 # Salvar o arquivo JSON com as estatísticas
 write(estatisticas_json, file = caminho_arquivo_json_absoluto)
-print(paste("✅ Estatísticas salvas em:", caminho_arquivo_json_absoluto))
+paste(caminho_arquivo_json_absoluto)
 

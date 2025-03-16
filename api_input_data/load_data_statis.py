@@ -14,7 +14,6 @@ class RScriptLoader:
 
         for item in raiz_busca.rglob(nome_arquivo):
             if item.is_file():
-                print(f"✅ Arquivo encontrado: {item}")
                 return item
 
         print(f"❌ Erro: Arquivo '{nome_arquivo}' não encontrado dentro de {raiz_busca}")
@@ -26,10 +25,8 @@ class RScriptLoader:
             print("❌ Erro: Caminho do script R não definido.")
             return False
 
-        print(f"📂 Executando script: {self.script_path}")
         try:
             robjects.r.source(str(self.script_path))  # Executa o script R
-            print(f"✅ Script '{self.script_path.name}' carregado com sucesso.")
             
             # Encontrar o arquivo JSON gerado após execução do script
             self.json_path = self.encontrar_arquivo("estatistica.json")
@@ -48,7 +45,6 @@ class RScriptLoader:
             print("❌ Erro: Arquivo JSON não encontrado após execução do script.")
             return None
 
-        print(f"📂 Caminho do arquivo JSON: {self.json_path}")
         try:
             with self.json_path.open('r') as arquivo:
                 dados = json.load(arquivo)
