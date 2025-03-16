@@ -34,8 +34,8 @@ class Insumo:
         for insumo in self.insumos:
             print(f"- {insumo['nome']}: {insumo['quantidade']} {insumo['unidade']}")
 
-    def exibir_insumos(self):
-        return self.insumos if self.insumos else []
+    # def exibir_insumos(self):
+    #     return self.insumos if self.insumos else []
     
     def quantidade_insumo(self):
         """Exibe os insumos cadastrados de forma organizada."""
