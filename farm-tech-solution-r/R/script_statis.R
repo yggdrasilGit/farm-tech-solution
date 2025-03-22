@@ -20,7 +20,7 @@ encontrar_arquivo <- function(nome_arquivo, raiz_busca=".") {
 }
 
 # Definir o caminho do arquivo de funções (utilizando 'here' para resolução do caminho)
-caminho_funcoes_relativo <- here("farm-tech-solution-R/R", "funcoes.R")  # Caminho relativo do arquivo
+caminho_funcoes_relativo <- here("R", "funcoes.R")  # Caminho relativo do arquivo
 
 # Exibir o caminho absoluto antes de carregar o script
 caminho_funcoes_absoluto <- path_abs(caminho_funcoes_relativo)  # Obtém o caminho absoluto
@@ -34,7 +34,7 @@ if (file.exists(caminho_funcoes_absoluto)) {
 }
 
 # Definir o caminho do arquivo JSON de entrada
-arquivo_json_relativo <- here("farm-tech-solution-R/data", "test.json")  # Caminho relativo do arquivo
+arquivo_json_relativo <- here("dados", "resultado.json")  # Caminho relativo do arquivo
 
 # Exibir o caminho absoluto do arquivo JSON
 arquivo_json_absoluto <- path_abs(arquivo_json_relativo)  # Obtém o caminho absoluto

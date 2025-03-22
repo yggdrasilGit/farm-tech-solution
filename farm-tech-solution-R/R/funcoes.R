@@ -115,7 +115,7 @@ get_geocode <- function(location_name) {
 #buscasr o diretorio data 
 get_data_directory <- function() {
   # Defina o caminho base para salvar os arquivos JSON
-  base_dir <- file.path("~", "Documents", "GitHub", "farm-tech-solution", "farm-tech-solution-R", "data")
+  base_dir <- file.path("~", "Documents", "GitHub", "farm-tec-solution",)
   
   # Normalizar o caminho para garantir compatibilidade com qualquer SO
   normalized_dir <- normalizePath(base_dir, mustWork = FALSE)
